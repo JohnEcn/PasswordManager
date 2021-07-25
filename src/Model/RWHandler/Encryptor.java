@@ -4,44 +4,75 @@ import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Encryptor {
 
     private SecretKeySpec key;
     private IvParameterSpec iv;
-    private static final String SALT = "random_salt12345";
+    private static final String SALT = "2968e36f88942b4f";
 
-    public Encryptor(String encryptionKey) throws Exception
+    public Encryptor(String encryptionKey)
     {
-        key = new SecretKeySpec(hashKey(encryptionKey),"AES");
-        iv = new IvParameterSpec(SALT.getBytes("UTF-8"));
+        try
+        {
+            key = new SecretKeySpec(hashKey(encryptionKey),"AES");
+            iv = new IvParameterSpec(SALT.getBytes("UTF-8"));
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
-    private byte[] hashKey(String s) throws Exception
+
+    private byte[] hashKey(String s)
     {
-        MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
-        byte[] hashedKey = sha256.digest(s.getBytes("UTF-8"));
-        return hashedKey;
-    }
-    public SealedObject encrypt(Serializable obj) throws Exception {
-
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        cipher.init(Cipher.ENCRYPT_MODE, this.key, this.iv);
-
-        SealedObject sealedObj = new SealedObject(obj,cipher);
-        return sealedObj;
-    }
-    public Object decrypt(SealedObject sealedObj) throws Exception {
-
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        cipher.init(Cipher.DECRYPT_MODE, this.key, this.iv);
-
-        Object decryptedObj = sealedObj.getObject(cipher);
-        return decryptedObj;
+        try
+        {
+            MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
+            byte[] hashedKey = sha256.digest(s.getBytes("UTF-8"));
+            return hashedKey;
+        }
+        catch(NoSuchAlgorithmException | UnsupportedEncodingException e)
+        {
+            //Should never happen
+            throw new RuntimeException(e);
+        }
     }
 
+    public SealedObject encrypt(Serializable obj)
+    {
 
+        try
+        {
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, this.key, this.iv);
 
+            SealedObject sealedObj = new SealedObject(obj,cipher);
+            return sealedObj;
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
 
+    public Object decrypt(Object sealedObj)
+    {
+        try
+        {
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            cipher.init(Cipher.DECRYPT_MODE, this.key, this.iv);
 
+            SealedObject sealedObject = (SealedObject) sealedObj;
+            Object decryptedObj = sealedObject.getObject(cipher);
+            return decryptedObj;
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
 }
