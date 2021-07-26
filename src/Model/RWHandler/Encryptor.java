@@ -1,6 +1,7 @@
 package Model.RWHandler;
 
-import javax.crypto.*;
+import javax.crypto.Cipher;
+import javax.crypto.SealedObject;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.Serializable;
@@ -10,8 +11,8 @@ import java.security.NoSuchAlgorithmException;
 
 public class Encryptor {
 
-    private SecretKeySpec key;
-    private IvParameterSpec iv;
+    private final SecretKeySpec key;
+    private final IvParameterSpec iv;
     private static final String SALT = "2968e36f88942b4f";
 
     public Encryptor(String encryptionKey)
@@ -44,7 +45,6 @@ public class Encryptor {
 
     public SealedObject encrypt(Serializable obj)
     {
-
         try
         {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");

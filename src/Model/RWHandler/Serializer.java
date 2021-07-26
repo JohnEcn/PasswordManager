@@ -4,16 +4,18 @@ import javax.crypto.SealedObject;
 
 public class Serializer {
 
-    private String fileName;
-    private Encryptor encryptor;
+    private final String fileName;
+    private final Encryptor encryptor;
 
-    public Serializer(String fileName) {
+    public Serializer(String fileName)
+    {
         this.fileName = fileName;
         this.encryptor = null;
     }
 
-    //If a encryption key is provided , encryption/decryption will be used;
-    public Serializer(String fileName, String key) {
+    //If a encryption key is provided , encryption/decryption will be used ;
+    public Serializer(String fileName, String key)
+    {
         this.fileName = fileName;
         this.encryptor = new Encryptor(key);
     }
