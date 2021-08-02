@@ -1,6 +1,8 @@
 package tests.RWHandler;
 
 import Model.RWHandler.Encryptor;
+
+import javax.crypto.BadPaddingException;
 import javax.crypto.SealedObject;
 
 import org.junit.jupiter.api.Assertions;
@@ -17,9 +19,17 @@ class EncryptorTest {
         String originalObj = new String("testObject");
 
         SealedObject encryptedObj = testSubj.encrypt(originalObj);
-        Object decryptedObj = testSubj.decrypt(encryptedObj);
-        String afterDecryptionObj = (String) decryptedObj;
+        Object decryptedObj = null;
+        try
+        {
+            decryptedObj = testSubj.decrypt(encryptedObj);
+        }
+        catch (Exception e)
+        {
 
+        }
+
+        String afterDecryptionObj = (String) decryptedObj;
         Assertions.assertEquals(originalObj,afterDecryptionObj);
     }
 
@@ -33,6 +43,13 @@ class EncryptorTest {
 
         //New Encryptor instance with different key;
         Encryptor newTestSubj = new Encryptor("WrongEncryptionKey");
-        Assertions.assertThrows(RuntimeException.class , () -> {newTestSubj.decrypt(encryptedObj);});
+        try
+        {
+            Assertions.assertThrows(BadPaddingException.class , () -> {newTestSubj.decrypt(encryptedObj);});
+        }
+        catch (Exception e){
+
+        }
+
     }
 }

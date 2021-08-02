@@ -1,5 +1,6 @@
 package Model.RWHandler;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.SealedObject;
 import javax.crypto.spec.IvParameterSpec;
@@ -24,6 +25,7 @@ public class Encryptor {
         }
         catch (UnsupportedEncodingException e)
         {
+            //Should never happen
             throw new RuntimeException(e);
         }
     }
@@ -55,12 +57,12 @@ public class Encryptor {
         }
         catch (Exception e)
         {
+            //Should never happen
             throw new RuntimeException(e);
         }
     }
 
-    public Object decrypt(Object sealedObj)
-    {
+    public Object decrypt(Object sealedObj) throws BadPaddingException {
         try
         {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
@@ -70,8 +72,14 @@ public class Encryptor {
             Object decryptedObj = sealedObject.getObject(cipher);
             return decryptedObj;
         }
+        catch (BadPaddingException e)
+        {
+            //Wrong decryption Key -> BadPaddingException
+            throw e;
+        }
         catch (Exception e)
         {
+            //Should never happen
             throw new RuntimeException(e);
         }
     }
