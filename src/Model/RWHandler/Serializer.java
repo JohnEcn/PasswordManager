@@ -1,5 +1,7 @@
 package Model.RWHandler;
+
 import java.io.*;
+import javax.crypto.BadPaddingException;
 import javax.crypto.SealedObject;
 
 public class Serializer {
@@ -13,49 +15,97 @@ public class Serializer {
         this.encryptor = null;
     }
 
-    //If a encryption key is provided , encryption/decryption will be used ;
+    //If a encryption key is passed , encryption/decryption will be used ;
     public Serializer(String fileName, String key)
     {
         this.fileName = fileName;
         this.encryptor = new Encryptor(key);
     }
 
-    public void serialize(Serializable serializableObj)
+    public void serialize(Serializable serializableObj) throws IOException
     {
         Object objectForSerialization = serializableObj;
-
-        if (encryptor != null) {
+        if (encryptor != null)
+        {
+            //Optional encryption of object
             objectForSerialization = encryptor.encrypt(serializableObj);
         }
 
-        try {
-            FileOutputStream fileOut = new FileOutputStream(this.fileName);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        FileOutputStream fileOut = null;
+        ObjectOutputStream out = null;
+        try
+        {
+            fileOut = new FileOutputStream(this.fileName);
+            out = new ObjectOutputStream(fileOut);
             out.writeObject(objectForSerialization);
-            out.close();
-            fileOut.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        }
+        catch (FileNotFoundException e)
+        {
+            throw new FileNotFoundException("File does not exist");
+        }
+        catch (IOException e)
+        {
+            throw new IOException("General IO exception");
+        }
+        finally
+        {
+            try
+            {
+                out.close();
+                fileOut.close();
+            }
+            catch (Exception e)
+            {
+            }
         }
     }
 
-    public Object deserialize()
+    public Object deserialize() throws IOException, BadPaddingException
     {
         Object deserializedObj;
-
-        try {
-            FileInputStream fileIn = new FileInputStream(this.fileName);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
+        FileInputStream fileIn = null;
+        ObjectInputStream in = null;
+        try
+        {
+            fileIn = new FileInputStream(this.fileName);
+            in = new ObjectInputStream(fileIn);
             deserializedObj = in.readObject();
-            in.close();
-            fileIn.close();
-        } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        }
+        catch (FileNotFoundException e)
+        {
+            throw new FileNotFoundException("File does not exist");
+        }
+        catch (IOException e)
+        {
+            throw new IOException("General IO exception");
+        }
+        catch (ClassNotFoundException e)
+        {
+            throw new RuntimeException("Unrecoverable Exception");
+        }
+        finally
+        {
+            try
+            {
+                in.close();
+                fileIn.close();
+            }
+            catch (Exception e)
+            {
+            }
         }
 
-        if (encryptor != null) {
+        if (encryptor != null)
+        {
             SealedObject sealedObj = (SealedObject) deserializedObj;
-            return encryptor.decrypt(sealedObj);
+            try
+            {
+                return encryptor.decrypt(sealedObj);
+            }
+            catch (BadPaddingException e)
+            {
+                throw e;
+            }
         }
         return deserializedObj;
     }
