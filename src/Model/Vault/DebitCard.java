@@ -15,4 +15,40 @@ public class DebitCard extends Element{
         this.expireYear = expireYear;
         this.ccv2 = ccv2;
     }
+
+    //Set methods
+    public void setNumber(long number)
+    {
+        this.number = number;
+    }
+    public void setExpireMonth(short expireMonth)
+    {
+        this.expireMonth = expireMonth;
+    }
+    public void setExpireYear(short expireYear)
+    {
+        this.expireYear = expireYear;
+    }
+    public void setCcv2(short ccv2)
+    {
+        this.ccv2 = ccv2;
+    }
+
+    //Get methods
+    public long getNumber()
+    {
+        return this.number;
+    }
+    public short getExpireMonth()
+    {
+        return this.expireMonth;
+    }
+    public short getExpireYear()
+    {
+        return this.expireYear;
+    }
+    public short getCcv2()
+    {
+        return this.ccv2;
+    }
 }
