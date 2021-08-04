@@ -1,8 +1,6 @@
 package Model.Vault;
 
 import java.io.Serializable;
-import java.util.regex.*;
-import java.util.Calendar;
 
 public abstract class Element implements Serializable {
 
@@ -23,4 +21,8 @@ public abstract class Element implements Serializable {
         return "OK";
     }
 
+    public String toJson()
+    {
+        return "{}";
+    }
 }

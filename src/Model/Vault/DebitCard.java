@@ -60,7 +60,7 @@ public class DebitCard extends Element{
         String validationStatus = "";
 
         //Match a 16 digit number
-        boolean number = String.valueOf(this.number).matches("(^[1-9]{16}$)");
+        boolean number = String.valueOf(this.number).matches("(^[0-9]{16}$)");
 
         //Match a number between 1 and 12
         boolean expireM = String.valueOf(this.expireMonth).matches("(^0?[1-9]$)|(^1[0-2]$)");
@@ -80,5 +80,18 @@ public class DebitCard extends Element{
         validationStatus += ccv2 ? ""    : "-Incorrect 3 digit ccv2";
 
         return validationStatus;
+    }
+
+    @Override
+    public String toJson()
+    {
+        return "{ " +
+                "\"type\": \"DebitCard\"" +
+                ", \"name\": " + "\"" + this.getName() + "\"" +
+                ", \"number\": " + "\"" + this.number + "\"" +
+                ", \"expireMonth\": " + "\"" + this.expireMonth + "\"" +
+                ", \"expireYear\": " + "\"" + this.expireYear + "\"" +
+                ", \"ccv2\":" + "\"" + this.ccv2 + "\"" +
+                " }";
     }
 }

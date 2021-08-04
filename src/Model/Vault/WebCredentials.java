@@ -63,4 +63,17 @@ public class WebCredentials extends  Element{
         validationStatus = email ? "OK" : "-Invalid email";
         return validationStatus;
     }
+
+    @Override
+    public String toJson()
+    {
+        return "{ " +
+                "\"type\": \"webCredentials\"" +
+                ",\"name\": " + "\"" + this.getName() + "\"" +
+                ",\"username\": " + "\"" + this.username + "\"" +
+                ",\"email\": " + "\"" + this.email + "\"" +
+                ",\"password\": " + "\"" + this.password + "\"" +
+                ",\"url\": " + "\"" + this.url + "\"" +
+                " }";
+    }
 }
