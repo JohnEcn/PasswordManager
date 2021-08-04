@@ -1,6 +1,8 @@
 package Model.Vault;
 
 import java.io.Serializable;
+import java.util.regex.*;
+import java.util.Calendar;
 
 public abstract class Element implements Serializable {
 
@@ -10,9 +12,15 @@ public abstract class Element implements Serializable {
     {
         this.entryName = name;
     }
+
     public String getName()
     {
         return this.entryName;
+    }
+
+    public String validate()
+    {
+        return "OK";
     }
 
 }

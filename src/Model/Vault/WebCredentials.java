@@ -52,4 +52,15 @@ public class WebCredentials extends  Element{
         return this.url;
     }
 
+    @Override
+    public String validate()
+    {
+        String validationStatus = "";
+
+        //Check if email is valid
+        boolean email = this.email.matches("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
+
+        validationStatus = email ? "OK" : "-Invalid email";
+        return validationStatus;
+    }
 }
