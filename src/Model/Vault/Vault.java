@@ -36,7 +36,8 @@ public class Vault {
         }
     }
 
-    private void retrieveVault() throws IncorrectSecretKeyException {
+    private void retrieveVault() throws IncorrectSecretKeyException
+    {
         try
         {
             vaultElements = (ArrayList<Element>) this.IOHandler.deserialize();
@@ -56,18 +57,21 @@ public class Vault {
     }
 
     //Debit card add
-    public void addElement(String entryName, long number, short expireMonth, short expireYear, short ccv2) throws NotUniqueEntryNameException, InvalidArgumentException {
+    public void addElement(String entryName, long number, short expireMonth, short expireYear, short ccv2) throws NotUniqueEntryNameException, InvalidArgumentException
+    {
         Element debitCard = new DebitCard(entryName,number,expireMonth,expireYear,ccv2);
         this.insertionHandler(debitCard);
     }
 
     //Web credentials add
-    public void addElement(String entryName, String username, String email, String password, String url) throws NotUniqueEntryNameException, InvalidArgumentException {
+    public void addElement(String entryName, String username, String email, String password, String url) throws NotUniqueEntryNameException, InvalidArgumentException
+    {
         Element webCredentials = new WebCredentials(entryName, username, email, password, url);
         this.insertionHandler(webCredentials);
     }
 
-    private void insertionHandler(Element entry) throws NotUniqueEntryNameException, InvalidArgumentException {
+    private void insertionHandler(Element entry) throws NotUniqueEntryNameException, InvalidArgumentException
+    {
         boolean nameValidity = this.checkNameUniqueness(entry.getName());
         String argumentsValidity = entry.validate();
 
@@ -98,9 +102,15 @@ public class Vault {
         return true;
     }
 
-    public void removeElement()
+    public void removeElement(String entryUniqueName)
     {
-        // Deletes an element from the 'vaultElements' array
+        for(int i = 0;i<vaultElements.size(); i++)
+        {
+            if(entryUniqueName.equals(this.vaultElements.get(i).getName()))
+            {
+                this.vaultElements.remove(i);
+            }
+        }
     }
 
     public String getVaultElements()
