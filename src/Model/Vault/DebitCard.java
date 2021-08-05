@@ -88,10 +88,10 @@ public class DebitCard extends Element{
         return "{ " +
                 "\"type\": \"DebitCard\"" +
                 ", \"name\": " + "\"" + this.getName() + "\"" +
-                ", \"number\": " + "\"" + this.number + "\"" +
-                ", \"expireMonth\": " + "\"" + this.expireMonth + "\"" +
-                ", \"expireYear\": " + "\"" + this.expireYear + "\"" +
-                ", \"ccv2\":" + "\"" + this.ccv2 + "\"" +
+                ", \"number\": " + this.number +
+                ", \"expireMonth\": " + this.expireMonth +
+                ", \"expireYear\": " + this.expireYear +
+                ", \"ccv2\":" + this.ccv2 +
                 " }";
     }
 }
