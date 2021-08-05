@@ -109,6 +109,7 @@ public class Vault {
             if(entryUniqueName.equals(this.vaultElements.get(i).getName()))
             {
                 this.vaultElements.remove(i);
+                saveVault();
             }
         }
     }
