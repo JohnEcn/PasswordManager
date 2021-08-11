@@ -34,7 +34,7 @@ class SerializerTest {
         finally
         {
             Assertions.assertEquals(serializableTestObj,deserializedObj);
-            File testFile = new File("SerializerTest");
+            File testFile = new File("SerializerTest.vlt");
             testFile.delete();
         }
     }
@@ -83,7 +83,7 @@ class SerializerTest {
             serializer.serialize(serializableTestObj);
 
             //Change a byte so the file gets corrupted
-            RandomAccessFile raf = new RandomAccessFile("SerializerTest", "rw");
+            RandomAccessFile raf = new RandomAccessFile("SerializerTest.vlt", "rw");
             raf.seek(5);
             raf.write(00);
             raf.close();
@@ -96,7 +96,7 @@ class SerializerTest {
         }
         finally
         {
-            File testFile = new File("SerializerTest");
+            File testFile = new File("SerializerTest.vlt");
             testFile.delete();
         }
     }

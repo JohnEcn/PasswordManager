@@ -11,14 +11,14 @@ public class Serializer {
 
     public Serializer(String fileName)
     {
-        this.fileName = fileName;
+        this.fileName = fileName + ".vlt";
         this.encryptor = null;
     }
 
     //If a encryption key is passed , encryption/decryption will be used ;
     public Serializer(String fileName, String key)
     {
-        this.fileName = fileName;
+        this.fileName = fileName + ".vlt";
         this.encryptor = new Encryptor(key);
     }
 

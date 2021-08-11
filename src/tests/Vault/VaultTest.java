@@ -31,7 +31,7 @@ class VaultTest {
     @AfterAll
     public static void cleanUp()
     {
-        File testVaultFile = new File("testVault");
+        File testVaultFile = new File("testVault.vlt");
         testVaultFile.delete();
     }
     @ParameterizedTest
