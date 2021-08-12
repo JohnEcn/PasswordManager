@@ -1,8 +1,10 @@
 package ViewModel;
+
 import Model.CustomExceptions.IncorrectSecretKeyException;
 import Model.Vault.Vault;
-
+import java.io.File;
 import java.nio.file.FileAlreadyExistsException;
+import java.util.ArrayList;
 
 public class ViewModel {
 
@@ -22,7 +24,8 @@ public class ViewModel {
     private Vault vault;
     private boolean isVaultOpen = false;
 
-    public void unlockVault(String vaultName,String vaultKey) throws Exception {
+    public void unlockVault(String vaultName,String vaultKey) throws Exception
+    {
 
         if(!isVaultOpen) {
             try {
@@ -57,5 +60,26 @@ public class ViewModel {
                 throw new Exception("Unexpected error occurred");
             }
         }
+    }
+
+    public ArrayList<String> getExistingVaultNames()
+    {
+        File folder = new File("./");
+        File[] vaultFiles = folder.listFiles();
+        ArrayList<String> vaultNames = new ArrayList<String>();
+
+        for (int i = 0; i < vaultFiles.length; i++)
+        {
+            /** Get the 4 last characters */
+            String fileExtension = vaultFiles[i].getName().length() >= 5 ? vaultFiles[i].getName().substring(vaultFiles[i].getName().length() - 4) : "";
+
+            if (!vaultFiles[i].isDirectory() && fileExtension.equals(".vlt"))
+            {
+                String filename = vaultFiles[i].getName();
+                String fileWithoutExtension = filename.substring(0,filename.length()-4);
+                vaultNames.add(fileWithoutExtension);
+            }
+        }
+        return vaultNames;
     }
 }
