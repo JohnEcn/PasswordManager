@@ -82,4 +82,10 @@ public class ViewModel {
         }
         return vaultNames;
     }
+
+    public boolean isVaultUnlocked()
+    {
+        return isVaultOpen;
+    }
+
 }
