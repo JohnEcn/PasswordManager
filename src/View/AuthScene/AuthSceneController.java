@@ -2,6 +2,7 @@ package View.AuthScene;
 
 import Model.CustomExceptions.IncorrectSecretKeyException;
 import Model.CustomExceptions.InvalidArgumentException;
+import View.MainScene.MainSceneController;
 import ViewModel.ViewModel;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -272,9 +273,7 @@ public class AuthSceneController implements Initializable {
     }
     private void loadVaultContents() throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource( "../MainScene/mainScene.fxml"));
-        Scene scene = rootAp.getScene();
-        scene.setRoot(root);
+        MainSceneController.loadMainScene(rootAp.getScene());
     }
     private void displayGeneralError(String errorMsg)
     {
