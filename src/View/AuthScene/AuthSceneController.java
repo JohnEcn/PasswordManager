@@ -1,6 +1,7 @@
 package View.AuthScene;
 
 import Model.CustomExceptions.IncorrectSecretKeyException;
+import Model.CustomExceptions.InvalidArgumentException;
 import ViewModel.ViewModel;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -251,10 +252,15 @@ public class AuthSceneController implements Initializable {
         }
         catch (Exception e)
         {
+            Label errorLabel = (Label) usersHbox.lookup("#passErrorMessageLabel");
+
             if(e.getClass() == FileAlreadyExistsException.class)
             {
-                Label errorLabel = (Label) usersHbox.lookup("#passErrorMessageLabel");
                 errorLabel.setText("This vault name already exists.");
+            }
+            else if(e.getClass() == InvalidArgumentException.class)
+            {
+                errorLabel.setText(e.getMessage());
             }
             else
             {

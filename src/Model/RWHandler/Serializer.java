@@ -1,5 +1,7 @@
 package Model.RWHandler;
 
+import Model.CustomExceptions.InvalidArgumentException;
+
 import java.io.*;
 import javax.crypto.BadPaddingException;
 import javax.crypto.SealedObject;
@@ -16,8 +18,16 @@ public class Serializer {
     }
 
     //If a encryption key is passed , encryption/decryption will be used ;
-    public Serializer(String fileName, String key)
+    public Serializer(String fileName, String key) throws InvalidArgumentException
     {
+        if(fileName.length() < 1 ||  key.length() < 1)
+        {
+            throw new InvalidArgumentException("Empty filename or password.");
+        }
+        if(fileName.length() > 15)
+        {
+            throw new InvalidArgumentException("Username must be 15 characters max.");
+        }
         this.fileName = fileName + ".vlt";
         this.encryptor = new Encryptor(key);
     }

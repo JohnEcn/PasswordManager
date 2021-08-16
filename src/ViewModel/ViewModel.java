@@ -1,6 +1,7 @@
 package ViewModel;
 
 import Model.CustomExceptions.IncorrectSecretKeyException;
+import Model.CustomExceptions.InvalidArgumentException;
 import Model.Vault.Vault;
 import java.io.File;
 import java.nio.file.FileAlreadyExistsException;
@@ -47,14 +48,24 @@ public class ViewModel {
     {
         if(!isVaultOpen)
         {
-            try {
+            try
+            {
                 this.vault = new Vault(vaultName, vaultKey);
                 this.isVaultOpen = true;
-            } catch (IncorrectSecretKeyException e) {
+            }
+            catch (IncorrectSecretKeyException e) {
                 this.vault = null;
                 this.isVaultOpen = false;
                 throw new FileAlreadyExistsException("Vault exists");
-            } catch (Exception e) {
+            }
+            catch (InvalidArgumentException e)
+            {
+                this.vault = null;
+                this.isVaultOpen = false;
+                throw new InvalidArgumentException(e.getMessage());
+            }
+            catch (Exception e)
+            {
                 this.vault = null;
                 this.isVaultOpen = false;
                 throw new Exception("Unexpected error occurred");

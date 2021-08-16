@@ -35,7 +35,7 @@ class VaultTest {
         testVaultFile.delete();
     }
     @ParameterizedTest
-    @ValueSource(strings = {"secretKey","SecretKey!","","0000-0000","secretKey!!"})
+    @ValueSource(strings = {"secretKey","SecretKey!","asdad","0000-0000","secretKey!!"})
     @DisplayName("Wrong password (encryption key) test")
     public void incorrectKeyTest(String key)
     {

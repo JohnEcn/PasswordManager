@@ -17,12 +17,11 @@ class SerializerTest {
     @DisplayName("Serialization - deserialization test")
     public void serializeDeserializeTest()
     {
-        Serializer serializer = new Serializer("SerializerTest","encryptionKey");
         String serializableTestObj = new String("Test object");
-
         String deserializedObj = null;
         try
         {
+            Serializer serializer = new Serializer("SerializerTest","encryptionKey");
             serializer.serialize(serializableTestObj);
             deserializedObj = (String) serializer.deserialize();
         }
@@ -43,9 +42,10 @@ class SerializerTest {
     @DisplayName("File for deserialization not found test")
     public void fileNotFoundTest()
     {
-        Serializer serializer = new Serializer("notExistingFile","encryptionKey");
+
         try
         {
+            Serializer serializer = new Serializer("notExistingFile","encryptionKey");
             Assertions.assertThrows(FileNotFoundException.class , () -> {serializer.deserialize();});
         }
         catch (Exception e)
@@ -57,11 +57,11 @@ class SerializerTest {
     @DisplayName("Wrong decryption key of the serialized object test")
     public void wrongDecryptionKeyTest()
     {
-        Serializer serializer = new Serializer("SerializerTest","encryptionKey");
-        String serializableTestObj = new String("Test object");
-        Serializer wrongKeySerializer = new Serializer("SerializerTest","wrongKey");
         try
         {
+            Serializer serializer = new Serializer("SerializerTest","encryptionKey");
+            String serializableTestObj = new String("Test object");
+            Serializer wrongKeySerializer = new Serializer("SerializerTest","wrongKey");
             serializer.serialize(serializableTestObj);
             Assertions.assertThrows(BadPaddingException.class , () -> {wrongKeySerializer.deserialize();});
         }
@@ -74,12 +74,12 @@ class SerializerTest {
     @DisplayName("File's Header is corrupted test")
     public void corruptedFileTest()
     {
-        //Create an file that contains an encrypted Object
-        Serializer serializer = new Serializer("SerializerTest","encryptionKey");
-        String serializableTestObj = new String("Test object");
-
         try
         {
+            //Create an file that contains an encrypted Object
+            Serializer serializer = new Serializer("SerializerTest","encryptionKey");
+            String serializableTestObj = new String("Test object");
+
             serializer.serialize(serializableTestObj);
 
             //Change a byte so the file gets corrupted

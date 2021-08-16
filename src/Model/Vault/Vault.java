@@ -16,7 +16,7 @@ public class Vault {
     private final Serializer IOHandler;
     private  ArrayList<Element> vaultElements = new ArrayList<Element>();
 
-    public Vault(String vaultName, String encryptionKey) throws IncorrectSecretKeyException
+    public Vault(String vaultName, String encryptionKey) throws IncorrectSecretKeyException , InvalidArgumentException
     {
         this.vaultName = vaultName;
         this.encryptionKey = encryptionKey;
