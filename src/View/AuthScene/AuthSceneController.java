@@ -270,7 +270,7 @@ public class AuthSceneController implements Initializable {
     }
     private void displayGeneralError(String errorMsg)
     {
-        Label generalErrorLabel = (Label) usersHbox.lookup("#generalErrorMessageLabel");
+        Label generalErrorLabel = (Label) rootAp.lookup("#generalErrorMessageLabel");
         generalErrorLabel.setText(errorMsg);
     }
 }
