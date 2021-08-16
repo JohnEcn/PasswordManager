@@ -218,7 +218,7 @@ public class AuthSceneController implements Initializable {
         }
         catch (Exception e)
         {
-            if(e.getClass() == IncorrectSecretKeyException.class)
+            if(e.getClass() == IncorrectSecretKeyException.class || e.getClass() == InvalidArgumentException.class)
             {
                 Label errorLabel = (Label) usersHbox.lookup("#passErrorMessageLabel");
                 errorLabel.setText("Incorrect password.");

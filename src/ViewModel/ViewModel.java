@@ -32,7 +32,7 @@ public class ViewModel {
             try {
                 this.vault = new Vault(vaultName, vaultKey);
                 this.isVaultOpen = true;
-            } catch (IncorrectSecretKeyException e) {
+            } catch (IncorrectSecretKeyException | InvalidArgumentException e) {
                 this.vault = null;
                 this.isVaultOpen = false;
                 throw e;
