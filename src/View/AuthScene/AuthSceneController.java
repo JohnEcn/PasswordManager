@@ -7,6 +7,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -209,7 +211,7 @@ public class AuthSceneController implements Initializable {
 
             if(vm.isVaultUnlocked())
             {
-                System.out.println("Loading vault contents.....");
+                loadVaultContents();
             }
             else
             {
@@ -243,7 +245,7 @@ public class AuthSceneController implements Initializable {
 
             if(vm.isVaultUnlocked())
             {
-                System.out.println("Creating Vault..");
+                loadVaultContents();
             }
             else
             {
@@ -267,6 +269,12 @@ public class AuthSceneController implements Initializable {
                 displayGeneralError("Unexpected error occurred.");
             }
         }
+    }
+    private void loadVaultContents() throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource( "../MainScene/mainScene.fxml"));
+        Scene scene = rootAp.getScene();
+        scene.setRoot(root);
     }
     private void displayGeneralError(String errorMsg)
     {
