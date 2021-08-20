@@ -106,7 +106,7 @@ public class DebitCard extends Element{
                 ", \"expireMonth\": " +"\"" +   this.expireMonth + "\""  +
                 ", \"expireYear\": " +"\"" +   this.expireYear + "\""  +
                 ", \"ccv2\":" + "\"" +   this.ccv2 + "\""  +
-                ", \"ownersName\":"+  this.ownersName +
+                ", \"ownersName\":"+ "\""+  this.ownersName + "\"" +
                 " }";
     }
 }
