@@ -3,9 +3,12 @@ package ViewModel;
 import Model.CustomExceptions.IncorrectSecretKeyException;
 import Model.CustomExceptions.InvalidArgumentException;
 import Model.Vault.Vault;
+import com.google.gson.Gson;
 import java.io.File;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
+import java.util.Map;
+
 
 public class ViewModel {
 
@@ -23,6 +26,7 @@ public class ViewModel {
     /** ---------------------------------------------------- */
 
     private Vault vault;
+    private String vaultName = "";
     private boolean isVaultOpen = false;
 
     public void unlockVault(String vaultName,String vaultKey) throws Exception
@@ -32,6 +36,7 @@ public class ViewModel {
             try {
                 this.vault = new Vault(vaultName, vaultKey);
                 this.isVaultOpen = true;
+                this.vaultName = vaultName;
             } catch (IncorrectSecretKeyException | InvalidArgumentException e) {
                 this.vault = null;
                 this.isVaultOpen = false;
@@ -52,6 +57,7 @@ public class ViewModel {
             {
                 this.vault = new Vault(vaultName, vaultKey);
                 this.isVaultOpen = true;
+                this.vaultName = vaultName;
             }
             catch (IncorrectSecretKeyException e) {
                 this.vault = null;
@@ -99,4 +105,20 @@ public class ViewModel {
         return isVaultOpen;
     }
 
+    public String getLoadedVaultName()
+    {
+        return this.vaultName;
+    }
+
+    public ArrayList<Map<String,Object>> getVaultContents()
+    {
+        if(!isVaultOpen)
+        {
+            return null;
+        }
+        String content = vault.getVaultElements();
+        Gson gson = new Gson();
+        ArrayList<Map<String,Object>> vaultContents = new  ArrayList<Map<String,Object>>();
+        return  (ArrayList<Map<String,Object>>) gson.fromJson(content, vaultContents.getClass());
+    }
 }
