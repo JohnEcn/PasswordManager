@@ -8,14 +8,16 @@ public class DebitCard extends Element{
     private short expireMonth;
     private short expireYear;
     private short ccv2;
+    private String ownersName;
 
-    public DebitCard(String entryName, long number, short expireMonth, short expireYear, short ccv2)
+    public DebitCard(String entryName, long number, short expireMonth, short expireYear, short ccv2 , String ownersName)
     {
         setName(entryName);
         this.number = number;
         this.expireMonth = expireMonth;
         this.expireYear = expireYear;
         this.ccv2 = ccv2;
+        this.ownersName = ownersName;
     }
 
     //Set methods
@@ -35,6 +37,10 @@ public class DebitCard extends Element{
     {
         this.ccv2 = ccv2;
     }
+    public void setOwnersName(String ownersName )
+    {
+        this.ownersName = ownersName;
+    }
 
     //Get methods
     public long getNumber()
@@ -52,6 +58,10 @@ public class DebitCard extends Element{
     public short getCcv2()
     {
         return this.ccv2;
+    }
+    public String getOwnersName()
+    {
+        return this.ownersName;
     }
 
     @Override
@@ -72,12 +82,16 @@ public class DebitCard extends Element{
         //Match a 1 to 3 digit number
         boolean ccv2 = String.valueOf(this.ccv2).matches("(^\\d{1,3}$)");
 
+        //Match a valid name with a space between
+        boolean ownersName = String.valueOf(this.ownersName).matches("^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)");
+
         //Construct the string by concatenating the present errors
-        validationStatus = number && expireM && expireY && ccv2 ? "OK" : "";
+        validationStatus = number && expireM && expireY && ccv2 && ownersName? "OK" : "";
         validationStatus += number ? ""  : "-Incorrect 16 digit number";
         validationStatus += expireM ? "" : "-Incorrect expire month";
         validationStatus += expireY ? "" : "-Incorrect expire year";
         validationStatus += ccv2 ? ""    : "-Incorrect 3 digit ccv2";
+        validationStatus += ownersName ? ""    : "-Invalid owner's name";
 
         return validationStatus;
     }
@@ -88,10 +102,11 @@ public class DebitCard extends Element{
         return "{ " +
                 "\"type\": \"DebitCard\"" +
                 ", \"name\": " + "\"" + this.getName() + "\"" +
-                ", \"number\": " + this.number +
-                ", \"expireMonth\": " + this.expireMonth +
-                ", \"expireYear\": " + this.expireYear +
-                ", \"ccv2\":" + this.ccv2 +
+                ", \"number\": " +"\"" +  this.number+ "\""  +
+                ", \"expireMonth\": " +"\"" +   this.expireMonth + "\""  +
+                ", \"expireYear\": " +"\"" +   this.expireYear + "\""  +
+                ", \"ccv2\":" + "\"" +   this.ccv2 + "\""  +
+                ", \"ownersName\":"+  this.ownersName +
                 " }";
     }
 }

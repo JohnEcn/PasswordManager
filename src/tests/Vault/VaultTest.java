@@ -56,13 +56,13 @@ class VaultTest {
     public void addEntryTest()
     {
         //Create objects and their Json representation to compare them with the vault output
-        Element debitCard1= new DebitCard("DebitCard_1",5168213499062633L,(short) 12,(short)25,(short)233);
+        Element debitCard1= new DebitCard("DebitCard_1",5168213499062633L,(short) 12,(short)25,(short)233,"PETER JACKSON");
         Element webCredentials= new WebCredentials("Uni Services","it001002","me@uni.gr","testPassword123","random.uni.gr/whatever");
         String correctJson = "[" +  debitCard1.toJson() + "," +  webCredentials.toJson() + "]";
         try
         {
             //Add 2 new valid entry to the vault (same with the ones created before)
-            testVault.addElement("DebitCard_1",5168213499062633L,(short) 12,(short)25,(short)233);
+            testVault.addElement("DebitCard_1",5168213499062633L,(short) 12,(short)25,(short)233,"PETER JACKSON");
             testVault.addElement( "Uni Services","it001002","me@uni.gr","testPassword123","random.uni.gr/whatever");
 
             //Create new instance of vault (new Login) and retrieve the entries
@@ -84,7 +84,7 @@ class VaultTest {
         {
             //Attempt to add an entry to the vault with an existing name (debitCard1)
             Assertions.assertThrows(NotUniqueEntryNameException.class , () -> {
-                testVault.addElement("DebitCard_1",5168213493333333L,(short) 2,(short)23,(short)112); });
+                testVault.addElement("DebitCard_1",5168213493333333L,(short) 2,(short)23,(short)112,"NIKOS NIKAS"); });
         }
         catch (Exception e)
         {

@@ -57,9 +57,9 @@ public class Vault {
     }
 
     //Debit card add
-    public void addElement(String entryName, long number, short expireMonth, short expireYear, short ccv2) throws NotUniqueEntryNameException, InvalidArgumentException
+    public void addElement(String entryName, long number, short expireMonth, short expireYear, short ccv2 , String ownersName) throws NotUniqueEntryNameException, InvalidArgumentException
     {
-        Element debitCard = new DebitCard(entryName,number,expireMonth,expireYear,ccv2);
+        Element debitCard = new DebitCard(entryName,number,expireMonth,expireYear,ccv2,ownersName);
         this.insertionHandler(debitCard);
     }
 
