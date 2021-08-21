@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -18,6 +19,7 @@ import java.util.Map;
 public class MainSceneController {
 
     private final ViewModel vm = ViewModel.getInstance();
+    private final BoxBlur boxBlur = new BoxBlur();
 
     @FXML private AnchorPane rootContainer;
     @FXML private VBox entriesPanel;
@@ -28,6 +30,10 @@ public class MainSceneController {
         String vaultName = vm.getLoadedVaultName();;
         Label vaultNameLabel = (Label) rootContainer.lookup("#mainLabel");
         vaultNameLabel.setText(vaultName);
+
+        boxBlur.setWidth(7);
+        boxBlur.setHeight(2);
+        boxBlur.setIterations(6);
         try
         {
             displayEntries();
@@ -53,6 +59,33 @@ public class MainSceneController {
             boolean checkBoxState = checkbox.isSelected();
             Stage stage = (Stage) rootContainer.getScene().getWindow();
             stage.setAlwaysOnTop(checkBoxState);
+        }
+        catch (Exception e)
+        {
+            /** Display error message */
+        }
+    }
+
+    public void hideSensitiveDataController(ActionEvent a)
+    {
+        try
+        {
+            CheckBox checkbox = (CheckBox) a.getSource();
+            boolean checkBoxState = checkbox.isSelected();
+
+            if(checkBoxState)
+            {
+                boxBlur.setWidth(7);
+                boxBlur.setHeight(2);
+                boxBlur.setIterations(6);
+            }
+            else
+            {
+                boxBlur.setWidth(0);
+                boxBlur.setHeight(0);
+                boxBlur.setIterations(0);
+            }
+            displayEntries();
         }
         catch (Exception e)
         {
@@ -108,6 +141,7 @@ public class MainSceneController {
 
         Label passwordValue = (Label) newRow.lookup("#passwordValue");
         passwordValue.setText((String)data.get("password"));
+        passwordValue.setEffect(boxBlur);
 
         Label urlValue = (Label) newRow.lookup("#urlValue");
         urlValue.setText((String)data.get("url"));
@@ -126,15 +160,19 @@ public class MainSceneController {
         String ccNum = (String) data.get("number");
         String formatedCcNum = ccNum.substring(0,4) + "-" + ccNum.substring(4, 8) + "-" + ccNum.substring(8, 12) + "-" + ccNum.substring(12, ccNum.length());
         ccNumberValue.setText(formatedCcNum);
+        ccNumberValue.setEffect(boxBlur);
 
         Label usernameValueLabel = (Label) newRow.lookup("#expDateValue");
         usernameValueLabel.setText((String)data.get("expireMonth") + "/" + (String)data.get("expireYear"));
+        usernameValueLabel.setEffect(boxBlur);
 
         Label urlValueLabel = (Label) newRow.lookup("#ccv2Value");
         urlValueLabel.setText((String)data.get("ccv2"));
+        urlValueLabel.setEffect(boxBlur);
 
         Label ownersNameValue = (Label) newRow.lookup("#ownersNameValue");
         ownersNameValue.setText((String)data.get("ownersName"));
+        ownersNameValue.setEffect(boxBlur);
 
         return newRow;
 

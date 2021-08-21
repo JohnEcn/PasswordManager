@@ -28,7 +28,7 @@
       <TextField id="searchField" fx:id="searchField" layoutX="584.0" layoutY="32.0" prefHeight="30.0" prefWidth="266.0" promptText="Search..." scaleZ="2.0" />
       <Rectangle id="searchBorderRect" fx:id="searchBorderRect" arcHeight="5.0" arcWidth="5.0" height="2.0" layoutY="137.0" width="886.0" />
       <CheckBox id="onTopCheckBox" fx:id="onTopCheckBox" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" onAction="#onTopController" prefHeight="18.0" prefWidth="127.0" text="Remain on top" />
-      <CheckBox id="sensDataCheckbox" fx:id="sensDataCheckbox" layoutX="14.0" layoutY="101.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="145.0" text="Hide sensitive data" />
+      <CheckBox id="sensDataCheckbox" fx:id="sensDataCheckbox" layoutX="14.0" layoutY="101.0" mnemonicParsing="false" onAction="#hideSensitiveDataController" prefHeight="19.0" prefWidth="145.0" selected="true" text="Hide sensitive data" />
       <Rectangle id="separator" fx:id="separator11" arcHeight="5.0" arcWidth="5.0" height="33.0" layoutX="723.0" layoutY="94.0" width="129.0" />
       <Button id="newEntryBut" fx:id="newEntryBut" layoutX="724.0" layoutY="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="127.0" text="New Entry" />
    </children>
