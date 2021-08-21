@@ -1,0 +1,27 @@
+#entryRow {
+    -fx-background-color: #757575;
+    -fx-border-color: #975201;
+    -fx-border-width: 0;
+    -fx-box-sizing: border-box;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0.5, 0.0, 0.0);
+}
+#nameSeparator {
+    -fx-stroke: #5B5B5B;
+}
+#entryNameLabel {
+    -fx-font-size:18px;
+    -fx-text-fill:black;
+}
+#emailLabel,#usernameLabel,#passwordLabel,#urlLabel,
+#ccNumberLabel,#expDateLabel,#ccv2Label,#ownersNameLabel {
+    -fx-underline: true;
+    -fx-text-fill: #000000;
+    -fx-opacity:0.64;
+    -fx-font-size:12px;
+}
+#emailValue,#usernameValue,#passwordValue,#urlValue,
+#ccNumberValue,#expDateValue,#ccv2Value,#ownersNameValue {
+    -fx-cursor:"hand";
+    -fx-text-fill:white;
+    -fx-font-size:14px;
+}
