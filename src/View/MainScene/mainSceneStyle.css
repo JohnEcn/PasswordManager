@@ -46,3 +46,8 @@
     -fx-background-radius:0px;
     -fx-cursor:"hand";
 }
+#messageLabel {
+    -fx-text-fill:black;
+    -fx-font-size:14px;
+    -fx-alignment:center;
+}

@@ -1,6 +1,7 @@
 package View.MainScene;
 
 import ViewModel.ViewModel;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,7 +16,10 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
@@ -27,6 +31,7 @@ public class MainSceneController {
 
     @FXML private AnchorPane rootContainer;
     @FXML private VBox entriesPanel;
+    @FXML private Label messageLabel;
 
     @FXML
     protected void initialize()
@@ -44,7 +49,7 @@ public class MainSceneController {
         }
         catch (Exception e)
         {
-            /** Call method to display error message*/
+            messageLabel.setText("Unexpected error occurred.");
         }
     }
 
@@ -66,7 +71,7 @@ public class MainSceneController {
         }
         catch (Exception e)
         {
-            /** Display error message */
+            messageLabel.setText("Unexpected error occurred.");
         }
     }
 
@@ -93,7 +98,7 @@ public class MainSceneController {
         }
         catch (Exception e)
         {
-            /** Display error message */
+            messageLabel.setText("Unexpected error occurred.");
         }
     }
 
@@ -105,6 +110,17 @@ public class MainSceneController {
         Label value = (Label) m.getSource();
         content.putString(value.getText());
         clipboard.setContent(content);
+
+        /** Feedback that the value is copied */
+        messageLabel.setText("Value copied..");
+        FadeTransition fadeIn = new FadeTransition(Duration.millis(300));
+        fadeIn.setNode(messageLabel);
+        fadeIn.setFromValue(1);
+        fadeIn.setToValue(0);
+        fadeIn.setCycleCount(1);
+        fadeIn.setDelay(Duration.millis(1300));
+        fadeIn.setAutoReverse(false);
+        fadeIn.playFromStart();
     }
     private void addMouseClickListener(Label label)
     {
