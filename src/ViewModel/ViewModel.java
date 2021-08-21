@@ -112,11 +112,12 @@ public class ViewModel {
 
     public ArrayList<Map<String,Object>> getVaultContents()
     {
-        if(!isVaultOpen)
+        String content = vault.getVaultElements();
+        if(!isVaultOpen || content.equals("]"))
         {
             return null;
         }
-        String content = vault.getVaultElements();
+
         Gson gson = new Gson();
         ArrayList<Map<String,Object>> vaultContents = new  ArrayList<Map<String,Object>>();
         return  (ArrayList<Map<String,Object>>) gson.fromJson(content, vaultContents.getClass());
