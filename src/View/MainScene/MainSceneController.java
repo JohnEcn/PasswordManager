@@ -2,6 +2,7 @@ package View.MainScene;
 
 import ViewModel.ViewModel;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -93,6 +97,26 @@ public class MainSceneController {
         }
     }
 
+    public void copyValueToClipBoard(MouseEvent m)
+    {
+        Clipboard clipboard = Clipboard.getSystemClipboard();
+        ClipboardContent content = new ClipboardContent();
+
+        Label value = (Label) m.getSource();
+        content.putString(value.getText());
+        clipboard.setContent(content);
+    }
+    private void addMouseClickListener(Label label)
+    {
+        label.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            public void handle(MouseEvent m)
+            {
+                copyValueToClipBoard(m);
+            }
+        });
+    }
+
     public void displayEntries() throws IOException
     {
         ArrayList<Map<String,Object>> vaultContents = vm.getVaultContents();
@@ -135,16 +159,20 @@ public class MainSceneController {
 
         Label emailValue = (Label) newRow.lookup("#emailValue");
         emailValue.setText((String)data.get("email"));
+        addMouseClickListener(emailValue);
 
         Label usernameValue = (Label) newRow.lookup("#usernameValue");
         usernameValue.setText((String)data.get("username"));
+        addMouseClickListener(usernameValue);
 
         Label passwordValue = (Label) newRow.lookup("#passwordValue");
         passwordValue.setText((String)data.get("password"));
         passwordValue.setEffect(boxBlur);
+        addMouseClickListener(passwordValue);
 
         Label urlValue = (Label) newRow.lookup("#urlValue");
         urlValue.setText((String)data.get("url"));
+        addMouseClickListener(urlValue);
 
         return newRow;
     }
@@ -161,18 +189,22 @@ public class MainSceneController {
         String formatedCcNum = ccNum.substring(0,4) + "-" + ccNum.substring(4, 8) + "-" + ccNum.substring(8, 12) + "-" + ccNum.substring(12, ccNum.length());
         ccNumberValue.setText(formatedCcNum);
         ccNumberValue.setEffect(boxBlur);
+        addMouseClickListener(ccNumberValue);
 
         Label usernameValueLabel = (Label) newRow.lookup("#expDateValue");
         usernameValueLabel.setText((String)data.get("expireMonth") + "/" + (String)data.get("expireYear"));
         usernameValueLabel.setEffect(boxBlur);
+        addMouseClickListener(usernameValueLabel);
 
         Label urlValueLabel = (Label) newRow.lookup("#ccv2Value");
         urlValueLabel.setText((String)data.get("ccv2"));
         urlValueLabel.setEffect(boxBlur);
+        addMouseClickListener(urlValueLabel);
 
         Label ownersNameValue = (Label) newRow.lookup("#ownersNameValue");
         ownersNameValue.setText((String)data.get("ownersName"));
         ownersNameValue.setEffect(boxBlur);
+        addMouseClickListener(ownersNameValue);
 
         return newRow;
 
