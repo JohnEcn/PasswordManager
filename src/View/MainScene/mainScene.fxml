@@ -30,7 +30,7 @@
       <CheckBox id="onTopCheckBox" fx:id="onTopCheckBox" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" onAction="#onTopController" prefHeight="18.0" prefWidth="127.0" text="Remain on top" />
       <CheckBox id="sensDataCheckbox" fx:id="sensDataCheckbox" layoutX="14.0" layoutY="101.0" mnemonicParsing="false" onAction="#hideSensitiveDataController" prefHeight="19.0" prefWidth="145.0" selected="true" text="Hide sensitive data" />
       <Rectangle id="separator" fx:id="separator11" arcHeight="5.0" arcWidth="5.0" height="33.0" layoutX="724.0" layoutY="85.0" width="129.0" />
-      <Button id="newEntryBut" fx:id="newEntryBut" layoutX="725.0" layoutY="86.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="127.0" text="New Entry" />
+      <Button id="newEntryBut" fx:id="newEntryBut" layoutX="725.0" layoutY="86.0" mnemonicParsing="false" onAction="#newEntry" prefHeight="30.0" prefWidth="127.0" text="New Entry" />
       <Label id="messageLabel" fx:id="messageLabel" layoutX="358.0" layoutY="111.0" prefHeight="18.0" prefWidth="171.0" />
    </children>
 </AnchorPane>

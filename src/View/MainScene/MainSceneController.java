@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static View.MainScene.NewEntry.NewEntryController.loadNewEntryUI;
+
 public class MainSceneController {
 
     private final ViewModel vm = ViewModel.getInstance();
@@ -122,6 +124,7 @@ public class MainSceneController {
         fadeIn.setAutoReverse(false);
         fadeIn.playFromStart();
     }
+
     private void addMouseClickListener(Label label)
     {
         label.setOnMouseClicked(new EventHandler<MouseEvent>()
@@ -131,6 +134,18 @@ public class MainSceneController {
                 copyValueToClipBoard(m);
             }
         });
+    }
+
+    public void newEntry()
+    {
+        try
+        {
+            loadNewEntryUI(entriesPanel);
+        }
+        catch (IOException e)
+        {
+            messageLabel.setText("Unexpected error occurred.");
+        }
     }
 
     public void displayEntries() throws IOException
