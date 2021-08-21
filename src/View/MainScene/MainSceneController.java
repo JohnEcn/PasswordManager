@@ -1,13 +1,16 @@
 package View.MainScene;
 
 import ViewModel.ViewModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
@@ -40,6 +43,21 @@ public class MainSceneController {
         /** Loads this controller's Scene */
         Parent root = FXMLLoader.load(MainSceneController.class.getResource( "../MainScene/mainScene.fxml"));
         scene.setRoot(root);
+    }
+
+    public void onTopController(ActionEvent a)
+    {
+        try
+        {
+            CheckBox checkbox = (CheckBox) a.getSource();
+            boolean checkBoxState = checkbox.isSelected();
+            Stage stage = (Stage) rootContainer.getScene().getWindow();
+            stage.setAlwaysOnTop(checkBoxState);
+        }
+        catch (Exception e)
+        {
+            /** Display error message */
+        }
     }
 
     public void displayEntries() throws IOException
@@ -121,4 +139,5 @@ public class MainSceneController {
         return newRow;
 
     }
+
 }
