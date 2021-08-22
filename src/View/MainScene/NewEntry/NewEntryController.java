@@ -69,12 +69,12 @@ public class NewEntryController {
         Parent node = null;
         if(entryType.equals("ccType"))
         {
-           node = FXMLLoader.load(MainSceneController.class.getResource( "../MainScene/NewEntry/ccNewEntry.fxml"));
+           node = FXMLLoader.load(MainSceneController.class.getResource( "../MainScene/NewEntry/EntryTypes/ccNewEntry.fxml"));
            currentTypeSelected = "ccType";
         }
         else if(entryType.equals("webCredType"))
         {
-            node = FXMLLoader.load(MainSceneController.class.getResource( "../MainScene/NewEntry/webNewEntry.fxml"));
+            node = FXMLLoader.load(MainSceneController.class.getResource( "../MainScene/NewEntry/EntryTypes/webNewEntry.fxml"));
             currentTypeSelected = "webCredType";
         }
         /** Additional types can be added here as else if statements */
