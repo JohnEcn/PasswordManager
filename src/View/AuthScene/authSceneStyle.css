@@ -1,11 +1,12 @@
 #rootAp,#vaultsScrollPane,#vaultsHbox
 {
-     -fx-background-color: #404040;
+     -fx-background-color: #202429;
+     -fx-font-family: 'Roboto';
 }
 #username
 {
    -fx-text-fill: white;
-   -fx-font-size: 25px;
+   -fx-font-size: 28px;
    -fx-alignment:center;
 }
 #usernameMini
@@ -14,21 +15,27 @@
    -fx-font-size: 15px;
    -fx-alignment:center;
 }
+#newVaultBut
+{
+    -fx-background-color: #323539;
+    -fx-background-radius:9px;
+
+}
 #newVaultLabel
 {
-   -fx-text-fill: black;
-   -fx-font-size: 20px;
+   -fx-text-fill: white;
+   -fx-font-size: 16px;
    -fx-alignment:center;
    -fx-cursor: HAND;
 }
 #outlineBox
 {
-    -fx-background-color: linear-gradient(to right bottom, rgba(255,139,3,1) 35%, rgba(255, 0, 0, 0.65) 94%);
+    -fx-background-color: linear-gradient(to right bottom, #FF7E06 27.14%, #F90000 88.35%);
     -fx-background-radius: 5px;
 }
 #mainBox
 {
-    -fx-fill:#1F1C1C;
+    -fx-fill:#25282D;
     -fx-cursor: HAND;
 }
 #vaultImg
@@ -38,7 +45,7 @@
 }
 #mainBoxSelectedVault
 {
-    -fx-fill:#1F1C1C;
+    -fx-fill:#25282D;
 }
 #vaultImgSelectedVault
 {
@@ -46,8 +53,13 @@
 }
 #unlockButton,#newVaultButton
 {
-    -fx-background-color: #FCC87B;
+    -fx-background-color: #FE932B;
     -fx-cursor: HAND;
+    -fx-background-radius:0px;
+}
+#passwordField,#usernameField
+{
+    -fx-background-radius:0px;
 }
 .text-field:focused
 {
@@ -64,6 +76,3 @@
     -fx-font-size: 14px;
     -fx-alignment:center;
 }
-
-
-

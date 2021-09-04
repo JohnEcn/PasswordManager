@@ -12,7 +12,6 @@
 <AnchorPane fx:id="rootContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScene.MainSceneController">
    <children>
       <Label id="mainLabel" layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="255.0" text="John’s Vault" />
-      <Rectangle id="separator" fx:id="separator1" arcHeight="5.0" arcWidth="5.0" height="34.0" layoutX="583.0" layoutY="23.0" width="270.0" />
       <ScrollPane fx:id="scrollPanel" hbarPolicy="NEVER" layoutY="145.0" prefHeight="346.0" prefWidth="886.0" style="-fx-border-width: 0;" vbarPolicy="NEVER">
          <content>
             <VBox id="entriesPanel" fx:id="entriesPanel" prefHeight="344.0" prefWidth="884.0" spacing="6.0">
@@ -25,12 +24,11 @@
                </children></VBox>
          </content>
       </ScrollPane>
-      <TextField id="searchField" fx:id="searchField" layoutX="585.0" layoutY="25.0" prefHeight="30.0" prefWidth="266.0" promptText="Search..." scaleZ="2.0" />
-      <Rectangle id="searchBorderRect" fx:id="searchBorderRect" arcHeight="5.0" arcWidth="5.0" height="2.0" layoutY="137.0" width="886.0" />
-      <CheckBox id="onTopCheckBox" fx:id="onTopCheckBox" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" onAction="#onTopController" prefHeight="18.0" prefWidth="127.0" text="Remain on top" />
-      <CheckBox id="sensDataCheckbox" fx:id="sensDataCheckbox" layoutX="14.0" layoutY="101.0" mnemonicParsing="false" onAction="#hideSensitiveDataController" prefHeight="19.0" prefWidth="145.0" selected="true" text="Hide sensitive data" />
-      <Rectangle id="separator" fx:id="separator11" arcHeight="5.0" arcWidth="5.0" height="33.0" layoutX="724.0" layoutY="85.0" width="129.0" />
-      <Button id="newEntryBut" fx:id="newEntryBut" layoutX="725.0" layoutY="86.0" mnemonicParsing="false" onAction="#newEntry" prefHeight="30.0" prefWidth="127.0" text="New Entry" />
+      <TextField id="searchField" fx:id="searchField" layoutX="608.0" layoutY="35.0" prefHeight="30.0" prefWidth="245.0" promptText="Search..." scaleZ="2.0" />
+      <Rectangle id="searchBorderRect" fx:id="searchBorderRect" arcHeight="5.0" arcWidth="5.0" height="1.0" layoutY="137.0" width="886.0" />
+      <CheckBox id="onTopCheckBox" fx:id="onTopCheckBox" layoutX="14.0" layoutY="85.0" mnemonicParsing="false" onAction="#onTopController" prefHeight="18.0" prefWidth="127.0" text="Remain on top" />
+      <CheckBox id="sensDataCheckbox" fx:id="sensDataCheckbox" layoutX="14.0" layoutY="108.0" mnemonicParsing="false" onAction="#hideSensitiveDataController" prefHeight="19.0" prefWidth="145.0" selected="true" text="Hide sensitive data" />
       <Label id="messageLabel" fx:id="messageLabel" layoutX="358.0" layoutY="111.0" prefHeight="18.0" prefWidth="171.0" />
+      <Button id="newEntryBut" fx:id="newEntryBut" layoutX="725.0" layoutY="85.0" mnemonicParsing="false" onAction="#newEntry" prefHeight="40.0" prefWidth="128.0" text="New Entry" />
    </children>
 </AnchorPane>

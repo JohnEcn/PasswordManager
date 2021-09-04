@@ -1,16 +1,18 @@
 #rootContainer,#entriesPanel,#scrollPanel {
-    -fx-background-color: #404040;
+    -fx-background-color: #202429;
+    -fx-font-family:'Roboto';
 }
 #mainLabel {
    -fx-text-fill: white;
-   -fx-font-size:38px;
-   -fx-font-family:'sans-serif';
-   -fx-font-smoothing-type: gray;
+   -fx-font-size:40px;
+   -fx-font-weight:bold;
 }
 #searchField {
-    -fx-background-radius:0px;
+    -fx-background-radius:5px;
     -fx-font-size:14px;
-    -fx-text-fill:black;
+    -fx-background-color: #2A2F33;
+    -fx-text-fill:white;
+    -fx-font-weight:bold;
 }
 #nameSeparator {
     -fx-stroke: #5B5B5B;
@@ -28,23 +30,26 @@
     -fx-fill:linear-gradient(to right bottom, rgba(255,139,3,1) 34%, rgba(255,1,1,0.7455357142857143) 70%);
 }
 #onTopCheckBox .box,#sensDataCheckbox .box {
-    -fx-background-color: #d9d9d9;
+    -fx-background-color: white;
     -fx-border-color:black;
-    -fx-border-radius:0px;
-    -fx-background-radius:0px;
+    -fx-border-radius:2px;
+    -fx-background-radius:2px;
     -fx-background-insets:0;
     -fx-cursor:"hand";
 }
 #onTopCheckBox,#sensDataCheckbox {
     -fx-text-fill:white;
-    -fx-font-size:12px;
+    -fx-font-size:13px;
 }
 #newEntryBut {
-    -fx-background-color: #d9d9d9;
+    -fx-background-color: #2A2F33;
     -fx-border-width:0px;
-    -fx-border-radius:0px;
-    -fx-background-radius:0px;
+    -fx-border-radius:3px;
+    -fx-background-radius:3px;
     -fx-cursor:"hand";
+    -fx-text-fill:white;
+    -fx-font-size:15px;
+    -fx-font-weight:bold;
 }
 #messageLabel {
     -fx-text-fill:black;

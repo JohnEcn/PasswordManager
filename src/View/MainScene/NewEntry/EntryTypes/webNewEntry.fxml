@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="294.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+    <Label id="newLabel1" fx:id="newLabel1" layoutX="110.0" layoutY="53.0" prefHeight="18.0" prefWidth="220.0" text="Email" />
+    <TextField id="newValue1" fx:id="newValue1" layoutX="110.0" layoutY="71.0" prefHeight="30.0" prefWidth="245.0" />
+    <Label id="newLabel2" fx:id="newLabel2" layoutX="110.0" layoutY="112.0" prefHeight="18.0" prefWidth="220.0" text="Username" />
+    <TextField id="newValue2" fx:id="newValue2" layoutX="110.0" layoutY="130.0" prefHeight="30.0" prefWidth="245.0" />
+    <Label id="newLabel3" fx:id="newLabel3" layoutX="110.0" layoutY="173.0" prefHeight="18.0" prefWidth="220.0" text="Password" />
+    <TextField id="newValue3" fx:id="newValue3" layoutX="110.0" layoutY="191.0" prefHeight="30.0" prefWidth="245.0" />
+    <TextField id="newValue4" fx:id="newValue4" layoutX="110.0" layoutY="250.0" prefHeight="30.0" prefWidth="245.0" />
+    <Label id="newLabel4" fx:id="newLabel4" layoutX="110.0" layoutY="232.0" prefHeight="18.0" prefWidth="220.0" text="Url" />
+    <Label id="typeTitle" fx:id="typeTitle" layoutX="129.0" layoutY="14.0" prefHeight="17.0" prefWidth="220.0" text="Web Login" />
+      <Rectangle id="whiteLine" arcHeight="5.0" arcWidth="5.0" height="1.0" layoutX="31.0" layoutY="42.0" width="403.0" />
+</children>
+</AnchorPane>

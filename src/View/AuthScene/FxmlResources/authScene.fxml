@@ -4,15 +4,17 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 
 <AnchorPane id="rootAp" fx:id="rootAp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AuthScene.AuthSceneController">
    <children>
-      <ScrollPane id="vaultsScrollPane" layoutY="134.0" prefHeight="298.0" prefWidth="866.0" vbarPolicy="NEVER">
+      <ScrollPane id="vaultsScrollPane" layoutX="2.0" layoutY="107.0" prefHeight="298.0" prefWidth="866.0" vbarPolicy="NEVER">
          <content>
             <HBox id="vaultsHbox" fx:id="usersHbox" alignment="CENTER" prefHeight="298.0" prefWidth="864.0" spacing="36.0" />
          </content>
       </ScrollPane>
-      <Label id="newVaultLabel" fx:id="newVaultLabel" layoutX="353.0" layoutY="452.0" prefHeight="25.0" prefWidth="161.0" text="New Vault" />
+      <Region id="newVaultBut" fx:id="newVaultBut" layoutX="377.0" layoutY="451.0" prefHeight="30.0" prefWidth="113.0" />
+      <Label id="newVaultLabel" fx:id="newVaultLabel" layoutX="377.0" layoutY="454.0" prefHeight="25.0" prefWidth="113.0" text="New Vault" />
       <Label id="generalErrorMessageLabel" fx:id="generalErrorMessageLabel" layoutX="290.0" layoutY="405.0" prefHeight="17.0" prefWidth="289.0" />
    </children>
 </AnchorPane>

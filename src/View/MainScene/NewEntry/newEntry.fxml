@@ -6,47 +6,29 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.Region?>
 
 <AnchorPane id="newEntryContainer" fx:id="newEntryContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScene.NewEntry.NewEntryController">
    <children>
-      <Rectangle id="borderRect1" fx:id="borderRect1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="32.0" layoutX="44.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="106.0" />
-      <Rectangle id="borderRect2" fx:id="borderRect2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="32.0" layoutX="163.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="106.0" />
-      <Button id="saveBut" fx:id="saveBut" layoutX="47.0" layoutY="283.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Save" />
-      <Label id="nameLabel" fx:id="nameLabel" layoutX="45.0" layoutY="14.0" prefHeight="25.0" prefWidth="220.0" text="Entry name" />
-      <TextField id="nameValue" fx:id="nameValue" layoutX="45.0" layoutY="39.0" prefHeight="25.0" prefWidth="220.0" />
-      <Button id="cancelBut" fx:id="cancelBut" layoutX="166.0" layoutY="283.0" mnemonicParsing="false" onAction="#backToMainScene" prefHeight="25.0" prefWidth="100.0" text="Cancel" />
-      <Label id="typeLabel" fx:id="typeLabel" layoutX="45.0" layoutY="71.0" prefHeight="25.0" prefWidth="220.0" text="Entry type" />
-      <Rectangle id="borderRect1" fx:id="borderRect111" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="122.0" layoutY="96.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle id="borderRect1" fx:id="borderRect1111" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="43.0" layoutY="96.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <ImageView id="ccType" fx:id="ccType" fitHeight="55.0" fitWidth="61.0" layoutX="48.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+      <Region id="leftRegion" layoutX="20.0" layoutY="26.0" prefHeight="294.0" prefWidth="340.0" />
+      <Button id="saveBut" fx:id="saveBut" layoutX="57.0" layoutY="267.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Save" />
+      <Label id="nameLabel" fx:id="nameLabel" layoutX="68.0" layoutY="41.0" prefHeight="25.0" prefWidth="220.0" text="Entry name" />
+      <TextField id="nameValue" fx:id="nameValue" layoutX="68.0" layoutY="66.0" prefHeight="30.0" prefWidth="245.0" />
+      <Button id="cancelBut" fx:id="cancelBut" layoutX="196.0" layoutY="267.0" mnemonicParsing="false" onAction="#backToMainScene" prefHeight="40.0" prefWidth="128.0" text="Cancel" />
+      <Label id="typeLabel" fx:id="typeLabel" layoutX="68.0" layoutY="112.0" prefHeight="25.0" prefWidth="220.0" text="Entry type" />
+      <Region id="borderRect2" layoutX="144.0" layoutY="143.0" prefHeight="62.0" prefWidth="62.0" />
+      <Region id="borderRect1" layoutX="68.0" layoutY="143.0" prefHeight="62.0" prefWidth="62.0" />
+      <ImageView id="ccType" fx:id="ccType" fitHeight="40.0" fitWidth="40.0" layoutX="79.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../EntryRow/images/ccard.png" />
          </image>
       </ImageView>
-      <ImageView id="webCredType" fx:id="webCredType" fitHeight="55.0" fitWidth="55.0" layoutX="127.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="webCredType" fx:id="webCredType" fitHeight="40.0" fitWidth="40.0" layoutX="155.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../EntryRow/images/webIcon.png" />
          </image>
       </ImageView>
-      <Label id="ccTypeLabel" fx:id="ccTypeLabel" layoutX="43.0" layoutY="163.0" prefHeight="18.0" prefWidth="65.0" text="Credit card" />
-      <Label id="webTypeLabel" fx:id="webTypeLabel" layoutX="123.0" layoutY="163.0" prefHeight="18.0" prefWidth="65.0" text="Web Login" />
-      <AnchorPane id="valuesAp" fx:id="valuesAp" layoutX="347.0" layoutY="1.0" prefHeight="343.0" prefWidth="530.0">
-         <children>
-            <AnchorPane prefHeight="343.0" prefWidth="530.0">
-               <children>
-                  <Label id="newLabel1" fx:id="newLabel1" layoutX="155.0" layoutY="73.0" prefHeight="25.0" prefWidth="220.0" text="Email" />
-                  <TextField id="newValue1" fx:id="newValue1" layoutX="155.0" layoutY="98.0" prefHeight="25.0" prefWidth="220.0" />
-                  <Label id="newLabel2" fx:id="newLabel2" layoutX="155.0" layoutY="134.0" prefHeight="25.0" prefWidth="220.0" text="Username" />
-                  <TextField id="newValue2" fx:id="newValue2" layoutX="155.0" layoutY="159.0" prefHeight="25.0" prefWidth="220.0" />
-                  <Label id="newLabel3" fx:id="newLabel3" layoutX="155.0" layoutY="196.0" prefHeight="25.0" prefWidth="220.0" text="Password" />
-                  <TextField id="newValue3" fx:id="newValue3" layoutX="155.0" layoutY="221.0" prefHeight="25.0" prefWidth="220.0" />
-                  <TextField id="newValue4" fx:id="newValue4" layoutX="155.0" layoutY="282.0" prefHeight="25.0" prefWidth="220.0" />
-                  <Label id="newLabel4" fx:id="newLabel4" layoutX="155.0" layoutY="257.0" prefHeight="25.0" prefWidth="220.0" text="Url" />
-                  <Label id="typeTitle" fx:id="typeTitle" layoutX="155.0" layoutY="14.0" prefHeight="17.0" prefWidth="220.0" text="Web Login" />
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
+      <Region id="rightRegion" layoutX="382.0" layoutY="25.0" prefHeight="294.0" prefWidth="464.0" />
+      <AnchorPane id="valuesAp" fx:id="valuesAp" layoutX="382.0" layoutY="25.0" prefHeight="294.0" prefWidth="464.0" />
    </children>
 </AnchorPane>
