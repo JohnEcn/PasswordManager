@@ -16,14 +16,14 @@
       <TextField id="nameValue" fx:id="nameValue" layoutX="68.0" layoutY="66.0" prefHeight="30.0" prefWidth="245.0" />
       <Button id="cancelBut" fx:id="cancelBut" layoutX="196.0" layoutY="267.0" mnemonicParsing="false" onAction="#backToMainScene" prefHeight="40.0" prefWidth="128.0" text="Cancel" />
       <Label id="typeLabel" fx:id="typeLabel" layoutX="68.0" layoutY="112.0" prefHeight="25.0" prefWidth="220.0" text="Entry type" />
-      <Region id="borderRect2" layoutX="144.0" layoutY="143.0" prefHeight="62.0" prefWidth="62.0" />
-      <Region id="borderRect1" layoutX="68.0" layoutY="143.0" prefHeight="62.0" prefWidth="62.0" />
-      <ImageView id="ccType" fx:id="ccType" fitHeight="40.0" fitWidth="40.0" layoutX="79.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+      <Region id="webBorderRegion" fx:id="webBorderRegion" layoutX="68.0" layoutY="141.0" prefHeight="62.0" prefWidth="62.0" />
+      <Region id="ccBorderRegion" fx:id="ccBorderRegion" layoutX="147.0" layoutY="141.0" prefHeight="62.0" prefWidth="62.0" />
+      <ImageView id="ccType" fx:id="ccType" fitHeight="40.0" fitWidth="40.0" layoutX="158.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../EntryRow/images/ccard.png" />
          </image>
       </ImageView>
-      <ImageView id="webCredType" fx:id="webCredType" fitHeight="40.0" fitWidth="40.0" layoutX="155.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="webCredType" fx:id="webCredType" fitHeight="40.0" fitWidth="40.0" layoutX="79.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../EntryRow/images/webIcon.png" />
          </image>

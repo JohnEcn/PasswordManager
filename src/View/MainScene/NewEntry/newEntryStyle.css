@@ -11,7 +11,7 @@
 {
     -fx-fill: red;
 }
-#borderRect,#borderRect1,#borderRect2 {
+#webBorderRegion,#ccBorderRegion {
     -fx-background-color: #2A2F33;
     -fx-border-radius:16px;
     -fx-background-radius:16px;
