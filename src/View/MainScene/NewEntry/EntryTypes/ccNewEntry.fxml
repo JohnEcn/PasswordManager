@@ -7,17 +7,17 @@
 
 <AnchorPane prefHeight="294.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScene.NewEntry.EntryTypes.ccNewEntryController">
    <children>
-      <Label id="newLabel1" fx:id="newLabel1" layoutX="110.0" layoutY="62.0" prefHeight="18.0" prefWidth="220.0" text="16 Digit number" />
-      <TextField id="ccNumberNew" fx:id="ccNumberNew" layoutX="110.0" layoutY="80.0" onKeyPressed="#ccNumberValidate" onKeyReleased="#ccNumberValidate" prefHeight="30.0" prefWidth="245.0" />
-      <Label id="newLabel2" fx:id="newLabel2" layoutX="110.0" layoutY="121.0" prefHeight="18.0" prefWidth="89.0" text="Exp. Date" />
-      <TextField id="newValue2" fx:id="newValue2" layoutX="110.0" layoutY="139.0" onKeyPressed="#expMonthValidate" onKeyReleased="#expMonthValidate" prefHeight="30.0" prefWidth="34.0" />
-      <Label id="newLabel3" fx:id="newLabel3" layoutX="110.0" layoutY="179.0" prefHeight="18.0" prefWidth="220.0" text="ccv2" />
-      <TextField id="newValue3" fx:id="newValue3" layoutX="110.0" layoutY="197.0" onKeyPressed="#ccv2Validate" onKeyReleased="#ccv2Validate" prefHeight="30.0" prefWidth="245.0" />
-      <TextField id="newValue4" fx:id="newValue4" layoutX="110.0" layoutY="256.0" onKeyReleased="#nameValidate" prefHeight="30.0" prefWidth="245.0" />
-      <Label id="newLabel4" fx:id="newLabel4" layoutX="110.0" layoutY="238.0" prefHeight="18.0" prefWidth="220.0" text="Owners full name" />
+      <Label id="newLabel1" fx:id="newLabel1" layoutX="110.0" layoutY="55.0" prefHeight="18.0" prefWidth="220.0" text="16 Digit number" />
+      <TextField id="ccNumberNew" fx:id="ccNumberNew" layoutX="110.0" layoutY="73.0" onKeyPressed="#ccNumberValidate" onKeyReleased="#ccNumberValidate" prefHeight="30.0" prefWidth="245.0" />
+      <Label id="newLabel2" fx:id="newLabel2" layoutX="110.0" layoutY="114.0" prefHeight="18.0" prefWidth="89.0" text="Exp. Date" />
+      <TextField id="newValue2" fx:id="newValue2" layoutX="110.0" layoutY="132.0" onKeyPressed="#expMonthValidate" onKeyReleased="#expMonthValidate" prefHeight="30.0" prefWidth="34.0" />
+      <Label id="newLabel3" fx:id="newLabel3" layoutX="110.0" layoutY="172.0" prefHeight="18.0" prefWidth="220.0" text="ccv2" />
+      <TextField id="newValue3" fx:id="newValue3" layoutX="110.0" layoutY="190.0" onKeyPressed="#ccv2Validate" onKeyReleased="#ccv2Validate" prefHeight="30.0" prefWidth="245.0" />
+      <TextField id="newValue4" fx:id="newValue4" layoutX="110.0" layoutY="249.0" onKeyReleased="#nameValidate" prefHeight="30.0" prefWidth="245.0" />
+      <Label id="newLabel4" fx:id="newLabel4" layoutX="110.0" layoutY="231.0" prefHeight="18.0" prefWidth="220.0" text="Owners full name" />
       <Label id="typeTitle" fx:id="typeTitle" layoutX="129.0" layoutY="14.0" prefHeight="17.0" prefWidth="220.0" text="Credit Card" />
-      <TextField id="newValue2" fx:id="newValue21" layoutX="171.0" layoutY="139.0" onKeyPressed="#expYearValidate" onKeyReleased="#expYearValidate" prefHeight="30.0" prefWidth="34.0" />
-      <Label id="expDateSlash" fx:id="expDateSlash" layoutX="144.0" layoutY="142.0" prefHeight="25.0" prefWidth="27.0" text="/" textAlignment="CENTER" />
+      <TextField id="newValue2" fx:id="newValue21" layoutX="171.0" layoutY="132.0" onKeyPressed="#expYearValidate" onKeyReleased="#expYearValidate" prefHeight="30.0" prefWidth="34.0" />
+      <Label id="expDateSlash" fx:id="expDateSlash" layoutX="144.0" layoutY="135.0" prefHeight="25.0" prefWidth="27.0" text="/" textAlignment="CENTER" />
       <Rectangle id="whiteLine" arcHeight="5.0" arcWidth="5.0" height="1.0" layoutX="31.0" layoutY="42.0" width="403.0" />
    </children>
 </AnchorPane>

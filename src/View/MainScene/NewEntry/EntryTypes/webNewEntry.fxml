@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="294.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="294.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScene.NewEntry.EntryTypes.WebNewEntryController">
 <children>
     <Label id="newLabel1" fx:id="newLabel1" layoutX="110.0" layoutY="53.0" prefHeight="18.0" prefWidth="220.0" text="Email" />
     <TextField id="newValue1" fx:id="newValue1" layoutX="110.0" layoutY="71.0" prefHeight="30.0" prefWidth="245.0" />
