@@ -16,7 +16,6 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -47,6 +46,7 @@ public class MainSceneController {
         boxBlur.setIterations(6);
         try
         {
+            rootContainer.lookup("#sensDataCheckbox").setDisable(false);
             displayEntries();
         }
         catch (Exception e)
@@ -141,6 +141,7 @@ public class MainSceneController {
         try
         {
             loadNewEntryUI(entriesPanel);
+            rootContainer.lookup("#sensDataCheckbox").setDisable(true);;
         }
         catch (IOException e)
         {
