@@ -5,15 +5,22 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
+import java.util.*;
 
-public class ccNewEntryController {
+public class ccNewEntryController extends EntryType{
 
-    @FXML TextField ccNumberNew;
+    @FXML TextField ccNumberNew; // 16 digit number
+    @FXML TextField newValue2;   // Exp month
+    @FXML TextField newValue21;  // Exp year
+    @FXML TextField newValue3;   // ccv2
+    @FXML TextField newValue4;   // full name
+
+    private static ccNewEntryController controller_instance = null;
+    public static ccNewEntryController getInstance()
+    {
+        return controller_instance;
+    }
 
     @FXML
     protected void initialize() throws IOException
@@ -29,6 +36,8 @@ public class ccNewEntryController {
                 }
             }
         });
+
+        controller_instance = this;
     }
     public void ccNumberValidate(KeyEvent e)
     {
@@ -166,5 +175,17 @@ public class ccNewEntryController {
         int caretPos = nameTextField.getCaretPosition();
         nameTextField.setText(validatedStr);
         nameTextField.positionCaret(caretPos);
+    }
+    public Map<String,String> collectData()
+    {
+        Map<String,String> data = new HashMap<String,String>();
+
+        data.put("number",ccNumberNew.getText());
+        data.put("expireMonth",newValue2.getText());
+        data.put("expireYear",newValue21.getText());
+        data.put("ccv2",newValue3.getText());
+        data.put("ownersName",newValue4.getText());
+
+        return  data;
     }
 }
