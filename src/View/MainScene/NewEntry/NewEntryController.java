@@ -1,16 +1,21 @@
 package View.MainScene.NewEntry;
 
 import View.MainScene.MainSceneController;
+import View.MainScene.NewEntry.EntryTypes.EntryType;
+import View.MainScene.NewEntry.EntryTypes.WebNewEntryController;
+import View.MainScene.NewEntry.EntryTypes.ccNewEntryController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
+import java.util.Map;
 
 import static View.MainScene.MainSceneController.loadMainScene;
 
@@ -18,10 +23,12 @@ public class NewEntryController {
 
     @FXML private AnchorPane newEntryContainer;
     @FXML private AnchorPane valuesAp;
+    @FXML private TextField nameValue;
     @FXML private ImageView ccType;
     @FXML private Region ccBorderRegion;
     @FXML private ImageView webCredType;
     @FXML private Region webBorderRegion;
+
     private String currentTypeSelected = "webCredType";
 
     @FXML
@@ -95,5 +102,36 @@ public class NewEntryController {
 
         valuesAp.getChildren().clear();
         valuesAp.getChildren().add(node);
+    }
+
+    public void saveNewEntry() throws IOException
+    {
+        Map<String,String> data = null;
+        EntryType entryController = null;
+
+        if(currentTypeSelected.equals("webCredType"))
+        {
+            entryController = WebNewEntryController.getInstance();
+        }
+        else if(currentTypeSelected.equals("ccType"))
+        {
+            entryController = ccNewEntryController.getInstance();
+        }
+        /** Additional types of entries go here as else-if */
+
+        //Collect the data
+        data = entryController.collectData();
+        data.put("name",nameValue.getText());
+
+        //Call the MainSceneController method to pass the data to ViewModel
+        try
+        {
+            MainSceneController mainSceneController = MainSceneController.getInstance();
+            mainSceneController.addNewEntry(data);
+        }
+        catch(Exception e)
+        {
+            //Display error message
+        }
     }
 }
