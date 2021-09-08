@@ -84,7 +84,7 @@ public class MainSceneController {
         }
         catch (Exception e)
         {
-            messageLabel.setText("Unexpected error occurred.");
+            displayFeedbackMessage("Unexpected error occurred.", "red");
         }
     }
 
@@ -111,7 +111,7 @@ public class MainSceneController {
         }
         catch (Exception e)
         {
-            messageLabel.setText("Unexpected error occurred.");
+            displayFeedbackMessage("Unexpected error occurred.", "red");
         }
     }
 
@@ -125,13 +125,19 @@ public class MainSceneController {
         clipboard.setContent(content);
 
         /** Feedback that the value is copied */
-        messageLabel.setText("Value copied..");
+        displayFeedbackMessage("Value copied..","black");
+    }
+
+    public void displayFeedbackMessage(String message, String color)
+    {
+        messageLabel.setText(message);
+        messageLabel.setStyle("-fx-text-fill: "+color+";");
         FadeTransition fadeIn = new FadeTransition(Duration.millis(300));
         fadeIn.setNode(messageLabel);
         fadeIn.setFromValue(1);
         fadeIn.setToValue(0);
         fadeIn.setCycleCount(1);
-        fadeIn.setDelay(Duration.millis(1300));
+        fadeIn.setDelay(Duration.millis(2300));
         fadeIn.setAutoReverse(false);
         fadeIn.playFromStart();
     }
@@ -156,7 +162,7 @@ public class MainSceneController {
         }
         catch (IOException e)
         {
-            messageLabel.setText("Unexpected error occurred.");
+            displayFeedbackMessage("Unexpected error occurred.", "red");
         }
     }
 
