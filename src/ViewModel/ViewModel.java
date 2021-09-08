@@ -2,6 +2,7 @@ package ViewModel;
 
 import Model.CustomExceptions.IncorrectSecretKeyException;
 import Model.CustomExceptions.InvalidArgumentException;
+import Model.CustomExceptions.NotUniqueEntryNameException;
 import Model.Vault.Vault;
 import com.google.gson.Gson;
 import java.io.File;
@@ -121,5 +122,23 @@ public class ViewModel {
         Gson gson = new Gson();
         ArrayList<Map<String,Object>> vaultContents = new  ArrayList<Map<String,Object>>();
         return  (ArrayList<Map<String,Object>>) gson.fromJson(content, vaultContents.getClass());
+    }
+
+    public void addToVault(Map<String,String> data) throws InvalidArgumentException, NotUniqueEntryNameException {
+        String newEntryType = data.get("type");
+
+        if(newEntryType.equals("webCredentials"))
+        {
+            vault.addElement(data.get("name"),data.get("username"),data.get("email"),data.get("password"),data.get("url"));
+        }
+        else if(newEntryType.equals("DebitCard"))
+        {
+            //Remove the "-" from the number String and parse it as long type
+            long number = Long.parseLong(data.get("number").replaceAll("-", ""));
+            short expMonth = Short.parseShort(data.get("expireMonth"));
+            short expYear = Short.parseShort(data.get("expireYear"));
+            short ccv2 = Short.parseShort(data.get("ccv2"));
+            vault.addElement(data.get("name"),number,expMonth,expYear,ccv2,data.get("ownersName"));
+        }
     }
 }

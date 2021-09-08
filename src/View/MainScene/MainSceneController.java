@@ -1,5 +1,7 @@
 package View.MainScene;
 
+import Model.CustomExceptions.InvalidArgumentException;
+import Model.CustomExceptions.NotUniqueEntryNameException;
 import View.MainScene.NewEntry.EntryTypes.ccNewEntryController;
 import ViewModel.ViewModel;
 import javafx.animation.FadeTransition;
@@ -190,9 +192,9 @@ public class MainSceneController {
         }
     }
 
-    public void addNewEntry(Map<String,String> data)
-    {
-        //Pass the new data to Viewmodel
+    public void addNewEntry(Map<String,String> data) throws InvalidArgumentException, NotUniqueEntryNameException {
+        //Passing the data to the ViewModel
+        vm.addToVault(data);
     }
 
     /** Methods that build the entry rows for each entry type */
