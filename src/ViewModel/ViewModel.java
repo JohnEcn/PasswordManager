@@ -133,12 +133,25 @@ public class ViewModel {
         }
         else if(newEntryType.equals("DebitCard"))
         {
-            //Remove the "-" from the number String and parse it as long type
-            long number = Long.parseLong(data.get("number").replaceAll("-", ""));
-            short expMonth = Short.parseShort(data.get("expireMonth"));
-            short expYear = Short.parseShort(data.get("expireYear"));
-            short ccv2 = Short.parseShort(data.get("ccv2"));
-            vault.addElement(data.get("name"),number,expMonth,expYear,ccv2,data.get("ownersName"));
+            try {
+                //Remove the "-" from the number String and parse it as long type
+                long number = Long.parseLong(data.get("number").replaceAll("-", ""));
+                short expMonth = Short.parseShort(data.get("expireMonth"));
+                short expYear = Short.parseShort(data.get("expireYear"));
+                short ccv2 = Short.parseShort(data.get("ccv2"));
+                vault.addElement(data.get("name"),number,expMonth,expYear,ccv2,data.get("ownersName"));
+            }
+            catch (Exception e)
+            {
+                if(e.getClass() == NumberFormatException.class)
+                {
+                    throw new InvalidArgumentException("Empty fields.");
+                }
+                else
+                {
+                    throw e;
+                }
+            }
         }
     }
 }

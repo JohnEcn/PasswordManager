@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +29,7 @@ public class NewEntryController {
     @FXML private Region ccBorderRegion;
     @FXML private ImageView webCredType;
     @FXML private Region webBorderRegion;
+    @FXML private Label errorMessageLabel;
 
     private String currentTypeSelected = "webCredType";
 
@@ -118,20 +120,25 @@ public class NewEntryController {
             entryController = ccNewEntryController.getInstance();
         }
         /** Additional types of entries go here as else-if */
-
-        //Collect the data
-        data = entryController.collectData();
-        data.put("name",nameValue.getText());
-
-        //Call the MainSceneController method to pass the data to ViewModel
         try
         {
+            //Collect the data
+             data = entryController.collectData();
+             data.put("name",nameValue.getText());
+             if(nameValue.getText().equals("")){
+                 throw new Exception("Name cannot be empty");
+             }
+
+            //Call the MainSceneController method to pass the data to ViewModel
+
             MainSceneController mainSceneController = MainSceneController.getInstance();
             mainSceneController.addNewEntry(data);
+            this.backToMainScene();
+            mainSceneController.displayFeedbackMessage("New Entry Added","orange");
         }
         catch(Exception e)
         {
-            //Display error message
+            errorMessageLabel.setText(e.getMessage());
         }
     }
 }

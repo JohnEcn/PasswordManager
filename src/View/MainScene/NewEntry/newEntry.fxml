@@ -30,5 +30,6 @@
       </ImageView>
       <Region id="rightRegion" layoutX="382.0" layoutY="25.0" prefHeight="294.0" prefWidth="464.0" />
       <AnchorPane id="valuesAp" fx:id="valuesAp" layoutX="382.0" layoutY="25.0" prefHeight="294.0" prefWidth="464.0" />
+      <Label id="errorMessageLabel" fx:id="errorMessageLabel" alignment="CENTER" layoutX="57.0" layoutY="243.0" prefHeight="17.0" prefWidth="268.0" />
    </children>
 </AnchorPane>

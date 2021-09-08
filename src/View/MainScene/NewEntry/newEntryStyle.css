@@ -43,6 +43,11 @@
 {
     -fx-background-color: #FF7E06;
 }
+#errorMessageLabel
+{
+    -fx-text-fill:red;
+    -fx-font-size:12px;
+}
 #newLabel1,#newLabel2,#newLabel3,#newLabel4,#nameLabel,#typeLabel {
     -fx-text-fill:white;
     -fx-font-size:15px;
