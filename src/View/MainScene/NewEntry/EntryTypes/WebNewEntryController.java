@@ -56,7 +56,7 @@ public class WebNewEntryController extends EntryType {
         data.put("username",newValue2.getText());
         data.put("password",newValue3.getText());
         data.put("url",newValue4.getText());
-
+        data.put("type","webCredentials");
         return  data;
     }
 }

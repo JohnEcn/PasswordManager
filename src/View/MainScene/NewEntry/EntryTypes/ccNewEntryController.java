@@ -185,7 +185,7 @@ public class ccNewEntryController extends EntryType{
         data.put("expireYear",newValue21.getText());
         data.put("ccv2",newValue3.getText());
         data.put("ownersName",newValue4.getText());
-
+        data.put("type","DebitCard");
         return  data;
     }
 }
