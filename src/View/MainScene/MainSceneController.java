@@ -1,5 +1,6 @@
 package View.MainScene;
 
+import View.MainScene.NewEntry.EntryTypes.ccNewEntryController;
 import ViewModel.ViewModel;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -27,6 +28,12 @@ import static View.MainScene.NewEntry.NewEntryController.loadNewEntryUI;
 
 public class MainSceneController {
 
+    private static MainSceneController controller_instance = null;
+    public static MainSceneController getInstance()
+    {
+        return controller_instance;
+    }
+
     private final ViewModel vm = ViewModel.getInstance();
     private final BoxBlur boxBlur = new BoxBlur();
 
@@ -53,6 +60,8 @@ public class MainSceneController {
         {
             messageLabel.setText("Unexpected error occurred.");
         }
+
+        controller_instance = this;
     }
 
     public static void loadMainScene(Scene scene) throws IOException
@@ -181,6 +190,11 @@ public class MainSceneController {
         }
     }
 
+    public void addNewEntry(Map<String,String> data)
+    {
+        //Pass the new data to Viewmodel
+    }
+
     /** Methods that build the entry rows for each entry type */
     private AnchorPane getWebCredRow(Map<String,Object> data) throws IOException
     {
@@ -209,7 +223,7 @@ public class MainSceneController {
         return newRow;
     }
 
-    public AnchorPane getCreditCardRow(Map<String,Object> data) throws IOException
+    private AnchorPane getCreditCardRow(Map<String,Object> data) throws IOException
     {
         AnchorPane newRow = FXMLLoader.load(getClass().getResource("/View/MainScene/EntryRow/creditCardRow.fxml"));
 
