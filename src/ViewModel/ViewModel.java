@@ -124,7 +124,8 @@ public class ViewModel {
         return  (ArrayList<Map<String,Object>>) gson.fromJson(content, vaultContents.getClass());
     }
 
-    public void addToVault(Map<String,String> data) throws InvalidArgumentException, NotUniqueEntryNameException {
+    public void addToVault(Map<String,String> data) throws InvalidArgumentException, NotUniqueEntryNameException
+    {
         String newEntryType = data.get("type");
 
         if(newEntryType.equals("webCredentials"))
@@ -154,4 +155,10 @@ public class ViewModel {
             }
         }
     }
+
+    public void removeElement(String elementName)
+    {
+        vault.removeElement(elementName);
+    }
+
 }

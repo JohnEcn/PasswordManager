@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
@@ -226,6 +227,20 @@ public class MainSceneController {
         }
     }
 
+    public void deleteEntry(String entryUniqueName)
+    {
+        try
+        {
+            vm.removeElement(entryUniqueName);
+            displayFeedbackMessage("Element Deleted", "orange");
+        }
+        catch (Exception e)
+        {
+            displayFeedbackMessage("Entry deletion failed.", "red");
+        }
+
+    }
+
     public void addNewEntry(Map<String,String> data) throws InvalidArgumentException, NotUniqueEntryNameException {
         //Passing the data to the ViewModel
         vm.addToVault(data);
@@ -239,6 +254,7 @@ public class MainSceneController {
         Label entryNameLabel = (Label) newRow.lookup("#entryNameLabel");
         entryNameLabel.setText((String)data.get("name"));
         editEntryClickListener(entryNameLabel,data);
+        entryNameLabel.setTooltip(new Tooltip("Edit"));
 
         Label emailValue = (Label) newRow.lookup("#emailValue");
         emailValue.setText((String)data.get("email"));
@@ -267,6 +283,7 @@ public class MainSceneController {
         Label entryNameLabel = (Label) newRow.lookup("#entryNameLabel");
         entryNameLabel.setText((String)data.get("name"));
         editEntryClickListener(entryNameLabel,data);
+        entryNameLabel.setTooltip(new Tooltip("Edit"));
 
         Label ccNumberValue = (Label) newRow.lookup("#ccNumberValue");
         String ccNum = (String) data.get("number");

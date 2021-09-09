@@ -50,10 +50,9 @@ public class EditEntryController {
 
         if(resultText.equals("OK"))
         {
-            System.out.println("Deleting...");
             try
             {
-                //MainSceneController.getInstance().deleteEntry((String) data.get("name"));
+                MainSceneController.getInstance().deleteEntry((String) data.get("name"));
                 backToMainScene();
             }
             catch (Exception e)
