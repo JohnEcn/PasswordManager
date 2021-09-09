@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+
+<AnchorPane id="newEntryContainer" fx:id="newEntryContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScene.EditEntry.EditEntryController">
+   <children>
+      <Region id="leftRegion" layoutX="8.0" layoutY="25.0" prefHeight="294.0" prefWidth="340.0" />
+      <Button id="saveBut" fx:id="saveBut" layoutX="57.0" layoutY="267.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Save" />
+      <Label id="nameLabel" fx:id="nameLabel" layoutX="68.0" layoutY="41.0" prefHeight="25.0" prefWidth="220.0" text="Entry name" />
+      <TextField id="nameValue" fx:id="nameValue" layoutX="68.0" layoutY="66.0" prefHeight="30.0" prefWidth="245.0" />
+      <Button id="cancelBut" fx:id="cancelBut" layoutX="196.0" layoutY="267.0" mnemonicParsing="false" onAction="#backToMainScene" prefHeight="40.0" prefWidth="128.0" text="Cancel" />
+      <Region id="rightRegion" layoutX="382.0" layoutY="25.0" prefHeight="294.0" prefWidth="464.0" />
+      <AnchorPane id="valuesAp" fx:id="valuesAp" layoutX="382.0" layoutY="25.0" prefHeight="294.0" prefWidth="464.0" />
+      <Label id="errorMessageLabel" fx:id="errorMessageLabel" alignment="CENTER" layoutX="57.0" layoutY="243.0" prefHeight="17.0" prefWidth="268.0" />
+      <Button id="deleteBut" fx:id="deleteBut" layoutX="68.0" layoutY="114.0" mnemonicParsing="false" onAction="#deleteEntry" prefHeight="25.0" prefWidth="82.0" text="Delete" />
+   </children>
+</AnchorPane>

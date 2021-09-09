@@ -26,7 +26,7 @@
 #webCredType,#ccType {
     -fx-cursor:"hand";
 }
-#saveBut,#cancelBut {
+#saveBut,#cancelBut,#deleteBut {
     -fx-border-width:0px;
     -fx-border-radius:5px;
     -fx-background-radius:5px;
@@ -43,10 +43,18 @@
 {
     -fx-background-color: #FF7E06;
 }
+#deleteBut
+{
+    -fx-background-color: #414950;
+    -fx-border-width:1px;
+    -fx-border-color:#FA4949;
+
+}
 #errorMessageLabel
 {
     -fx-text-fill:red;
     -fx-font-size:12px;
+    -fx-font-weight:bold;
 }
 #newLabel1,#newLabel2,#newLabel3,#newLabel4,#nameLabel,#typeLabel {
     -fx-text-fill:white;
@@ -57,6 +65,7 @@
     -fx-background-radius:5px;
     -fx-font-size:13px;
     -fx-text-fill:black;
+    -fx-font-weight:bold;
 }
 #typeTitle {
     -fx-text-fill:white;

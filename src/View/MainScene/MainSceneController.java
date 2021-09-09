@@ -2,6 +2,7 @@ package View.MainScene;
 
 import Model.CustomExceptions.InvalidArgumentException;
 import Model.CustomExceptions.NotUniqueEntryNameException;
+import View.MainScene.EditEntry.EditEntryController;
 import View.MainScene.NewEntry.EntryTypes.ccNewEntryController;
 import ViewModel.ViewModel;
 import javafx.animation.FadeTransition;
@@ -153,6 +154,33 @@ public class MainSceneController {
         });
     }
 
+    private void editEntryClickListener(Label label, Map<String,Object> data)
+    {
+        label.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            public void handle(MouseEvent m)
+            {
+                editEntry(data,entriesPanel);
+                rootContainer.lookup("#sensDataCheckbox").setDisable(true);
+            }
+        });
+    }
+
+    public void editEntry(Map<String,Object> data,VBox container)
+    {
+        try
+        {
+            /** Gets the entry data and entry type, then calls the method to display the edit entry UI */
+            EditEntryController.loadEditEntryUI(data,container);
+            rootContainer.lookup("#sensDataCheckbox").setDisable(true);
+        }
+        catch (Exception e)
+        {
+            displayFeedbackMessage("Unexpected error occurred.", "red");
+            e.printStackTrace();
+        }
+    }
+
     public void newEntry()
     {
         try
@@ -210,6 +238,7 @@ public class MainSceneController {
 
         Label entryNameLabel = (Label) newRow.lookup("#entryNameLabel");
         entryNameLabel.setText((String)data.get("name"));
+        editEntryClickListener(entryNameLabel,data);
 
         Label emailValue = (Label) newRow.lookup("#emailValue");
         emailValue.setText((String)data.get("email"));
@@ -237,6 +266,7 @@ public class MainSceneController {
 
         Label entryNameLabel = (Label) newRow.lookup("#entryNameLabel");
         entryNameLabel.setText((String)data.get("name"));
+        editEntryClickListener(entryNameLabel,data);
 
         Label ccNumberValue = (Label) newRow.lookup("#ccNumberValue");
         String ccNum = (String) data.get("number");
