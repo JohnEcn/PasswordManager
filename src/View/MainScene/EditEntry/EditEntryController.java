@@ -1,12 +1,16 @@
 package View.MainScene.EditEntry;
 
 import View.MainScene.MainSceneController;
+import View.MainScene.NewEntry.EntryTypes.EntryType;
+import View.MainScene.NewEntry.EntryTypes.WebNewEntryController;
+import View.MainScene.NewEntry.EntryTypes.ccNewEntryController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.Map;
@@ -26,11 +30,13 @@ public class EditEntryController {
     }
 
     @FXML private TextField nameValue;
+    @FXML private AnchorPane valuesAp;
 
     @FXML
-    protected void initialize()
+    protected void initialize() throws IOException
     {
         nameValue.setText((String) data.get("name"));
+        loadEntryDataFields();
     }
 
     public void backToMainScene() throws IOException
@@ -59,5 +65,27 @@ public class EditEntryController {
             {
             }
         }
+    }
+
+    public void loadEntryDataFields() throws IOException
+    {
+        String entryType = (String) data.get("type");
+        EntryType controller = null;
+        Parent node = null;
+
+        if(entryType.equals("webCredentials"))
+        {
+            node = FXMLLoader.load(MainSceneController.class.getResource( "../MainScene/NewEntry/EntryTypes/webNewEntry.fxml"));
+            controller = WebNewEntryController.getInstance();
+        }
+        else if(entryType.equals("DebitCard"))
+        {
+            node = FXMLLoader.load(MainSceneController.class.getResource( "../MainScene/NewEntry/EntryTypes/ccNewEntry.fxml"));
+            controller = ccNewEntryController.getInstance();
+        }
+
+        valuesAp.getChildren().clear();
+        valuesAp.getChildren().add(node);
+        controller.loadEditEntryUI(valuesAp,data);
     }
 }

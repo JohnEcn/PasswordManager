@@ -5,6 +5,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -187,5 +189,15 @@ public class ccNewEntryController extends EntryType{
         data.put("ownersName",newValue4.getText());
         data.put("type","DebitCard");
         return  data;
+    }
+
+    /**Method used by EditEntryController to load data for edit */
+    public void loadEditEntryUI(AnchorPane root, Map<String,Object> data) throws IOException
+    {
+        ccNumberNew.setText((String) data.get("number"));
+        newValue2.setText((String) data.get("expireMonth"));
+        newValue21.setText((String) data.get("expireYear"));
+        newValue3.setText((String) data.get("ccv2"));
+        newValue4.setText((String) data.get("ownersName"));
     }
 }

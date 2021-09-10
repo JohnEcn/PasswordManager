@@ -1,8 +1,14 @@
 package View.MainScene.NewEntry.EntryTypes;
+import View.MainScene.MainSceneController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,4 +65,14 @@ public class WebNewEntryController extends EntryType {
         data.put("type","webCredentials");
         return  data;
     }
+
+    /**Method used by EditEntryController to load data for edit */
+    public void loadEditEntryUI(AnchorPane root,Map<String,Object> data) throws IOException
+    {
+        newValue1.setText((String) data.get("email"));
+        newValue2.setText((String) data.get("username"));
+        newValue3.setText((String) data.get("password"));
+        newValue4.setText((String) data.get("url"));
+    }
+
 }

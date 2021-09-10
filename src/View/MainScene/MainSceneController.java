@@ -178,7 +178,6 @@ public class MainSceneController {
         catch (Exception e)
         {
             displayFeedbackMessage("Unexpected error occurred.", "red");
-            e.printStackTrace();
         }
     }
 
