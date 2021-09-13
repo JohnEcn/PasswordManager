@@ -13,8 +13,8 @@ class EncryptorTest {
 
     @Test
     @DisplayName("The object after decryption must be equal to the original object")
-    public void encryptDecryptTest(){
-
+    public void encryptDecryptTest()
+    {
         Encryptor testSubj = new Encryptor("EncryptionTestKey");
         String originalObj = new String("testObject");
 
@@ -26,7 +26,7 @@ class EncryptorTest {
         }
         catch (Exception e)
         {
-
+            e.printStackTrace();
         }
 
         String afterDecryptionObj = (String) decryptedObj;
@@ -35,8 +35,8 @@ class EncryptorTest {
 
     @Test
     @DisplayName("Wrong decryption key test")
-    public void incorrectDecryptionKey(){
-
+    public void incorrectDecryptionKey()
+    {
         Encryptor testSubj = new Encryptor("EncryptionTestKey");
         String originalObj = new String("testObject");
         SealedObject encryptedObj = testSubj.encrypt(originalObj);
@@ -47,9 +47,9 @@ class EncryptorTest {
         {
             Assertions.assertThrows(BadPaddingException.class , () -> {newTestSubj.decrypt(encryptedObj);});
         }
-        catch (Exception e){
-
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
-
     }
 }

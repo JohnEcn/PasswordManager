@@ -42,7 +42,6 @@ class SerializerTest {
     @DisplayName("File for deserialization not found test")
     public void fileNotFoundTest()
     {
-
         try
         {
             Serializer serializer = new Serializer("notExistingFile","encryptionKey");

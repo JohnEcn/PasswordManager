@@ -1,4 +1,5 @@
 package tests.Vault;
+
 import Model.CustomExceptions.IncorrectSecretKeyException;
 import Model.CustomExceptions.NotUniqueEntryNameException;
 import Model.Vault.DebitCard;
@@ -11,9 +12,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.File;
 
+/** Tests work only in order */
 class VaultTest {
 
     private static Vault testVault;
+
     @BeforeAll
     public static void vaultInit()
     {
@@ -34,6 +37,7 @@ class VaultTest {
         File testVaultFile = new File("testVault.vlt");
         testVaultFile.delete();
     }
+
     @ParameterizedTest
     @ValueSource(strings = {"secretKey","SecretKey!","asdad","0000-0000","secretKey!!"})
     @DisplayName("Wrong password (encryption key) test")
