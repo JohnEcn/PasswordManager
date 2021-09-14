@@ -9,7 +9,7 @@
 <AnchorPane id="newEntryContainer" fx:id="newEntryContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScene.EditEntry.EditEntryController">
    <children>
       <Region id="leftRegion" layoutX="8.0" layoutY="25.0" prefHeight="294.0" prefWidth="340.0" />
-      <Button id="saveBut" fx:id="saveBut" layoutX="57.0" layoutY="267.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Save" />
+      <Button id="saveBut" fx:id="saveBut" layoutX="57.0" layoutY="267.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="40.0" prefWidth="128.0" text="Save" />
       <Label id="nameLabel" fx:id="nameLabel" layoutX="68.0" layoutY="41.0" prefHeight="25.0" prefWidth="220.0" text="Entry name" />
       <TextField id="nameValue" fx:id="nameValue" layoutX="68.0" layoutY="66.0" prefHeight="30.0" prefWidth="245.0" />
       <Button id="cancelBut" fx:id="cancelBut" layoutX="196.0" layoutY="267.0" mnemonicParsing="false" onAction="#backToMainScene" prefHeight="40.0" prefWidth="128.0" text="Cancel" />

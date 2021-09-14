@@ -161,4 +161,36 @@ public class ViewModel {
         vault.removeElement(elementName);
     }
 
+    public void editVaultElement(String elementName,Map<String,String> elementData) throws InvalidArgumentException, NotUniqueEntryNameException
+    {
+        String newEntryType = elementData.get("type");
+
+        if(newEntryType.equals("webCredentials"))
+        {
+            vault.editElement(elementData.get("name"),elementName,elementData.get("username"),elementData.get("email"),elementData.get("password"),elementData.get("url"));
+        }
+        else if(newEntryType.equals("DebitCard"))
+        {
+            try {
+                //Remove the "-" from the number String and parse it as long type
+                long number = Long.parseLong(elementData.get("number").replaceAll("-", ""));
+                short expMonth = Short.parseShort(elementData.get("expireMonth"));
+                short expYear = Short.parseShort(elementData.get("expireYear"));
+                short ccv2 = Short.parseShort(elementData.get("ccv2"));
+                vault.editElement(elementData.get("name"),elementName,number,expMonth,expYear,ccv2,elementData.get("ownersName"));
+            }
+            catch (Exception e)
+            {
+                if(e.getClass() == NumberFormatException.class)
+                {
+                    throw new InvalidArgumentException("Empty fields.");
+                }
+                else
+                {
+                    throw e;
+                }
+            }
+        }
+    }
+
 }

@@ -245,6 +245,11 @@ public class MainSceneController {
         vm.addToVault(data);
     }
 
+    public void saveEntryChanges(String entryName,Map<String,String> data) throws InvalidArgumentException, NotUniqueEntryNameException
+    {
+        vm.editVaultElement(entryName,data);
+    }
+
     /** Methods that build the entry rows for each entry type */
     private AnchorPane getWebCredRow(Map<String,Object> data) throws IOException
     {
