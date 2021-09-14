@@ -4,6 +4,7 @@ import Model.CustomExceptions.InvalidArgumentException;
 import Model.CustomExceptions.NotUniqueEntryNameException;
 import View.MainScene.EditEntry.EditEntryController;
 import View.MainScene.NewEntry.EntryTypes.ccNewEntryController;
+import View.Utilities.Utilities;
 import ViewModel.ViewModel;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.Clipboard;
@@ -44,6 +46,7 @@ public class MainSceneController {
     @FXML private AnchorPane rootContainer;
     @FXML private VBox entriesPanel;
     @FXML private Label messageLabel;
+    @FXML private TextField searchField;
 
     @FXML
     protected void initialize()
@@ -197,8 +200,9 @@ public class MainSceneController {
     public void displayEntries() throws IOException
     {
         ArrayList<Map<String,Object>> vaultContents = vm.getVaultContents();
+        vaultContents = filterEntries(vaultContents);
         ArrayList<AnchorPane> rows = new ArrayList<AnchorPane>();
-        if(vaultContents == null){return;}
+        if(vaultContents == null || vaultContents.size()==0){return;}
 
         /** Creates anchorPane elements with the entry data.
          *  To add a new type of entry, add a new else if
@@ -249,7 +253,6 @@ public class MainSceneController {
     {
         vm.editVaultElement(entryName,data);
     }
-
     /** Methods that build the entry rows for each entry type */
     private AnchorPane getWebCredRow(Map<String,Object> data) throws IOException
     {
@@ -315,4 +318,33 @@ public class MainSceneController {
 
     }
 
+    private ArrayList<Map<String,Object>> filterEntries(ArrayList<Map<String,Object>> entries)
+    {
+        //Get entry names in an arraylist
+        ArrayList<String> entryNames = new ArrayList<>();
+        for(int i=0; i<entries.size(); i++)
+        {
+            entryNames.add((String)entries.get(i).get("name"));
+        }
+
+        //Get the searchQuery
+        String searchQuery = searchField.getText();
+
+        //Search the entry names for matches using the searchQuery
+        String[] searchResults = Utilities.searchFunction(searchQuery,entryNames.toArray(new String[entryNames.size()]));
+
+        //All entries that match go to new ArrayList
+        ArrayList<Map<String,Object>> results = new ArrayList<>();
+        for(int i=0; i<entries.size(); i++)
+        {
+            for(int k=0; k<searchResults.length; k++)
+            {
+                if(searchResults[k].equalsIgnoreCase((String) entries.get(i).get("name")))
+                {
+                    results.add(entries.get(i));
+                }
+            }
+        }
+        return results;
+    }
 }

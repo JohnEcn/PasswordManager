@@ -24,7 +24,7 @@
                </children></VBox>
          </content>
       </ScrollPane>
-      <TextField id="searchField" fx:id="searchField" layoutX="608.0" layoutY="35.0" prefHeight="30.0" prefWidth="245.0" promptText="Search..." scaleZ="2.0" />
+      <TextField id="searchField" fx:id="searchField" layoutX="608.0" layoutY="35.0" onKeyReleased="#displayEntries" prefHeight="30.0" prefWidth="245.0" promptText="Search..." scaleZ="2.0" />
       <Rectangle id="searchBorderRect" fx:id="searchBorderRect" arcHeight="5.0" arcWidth="5.0" height="1.0" layoutY="137.0" width="886.0" />
       <CheckBox id="onTopCheckBox" fx:id="onTopCheckBox" layoutX="14.0" layoutY="85.0" mnemonicParsing="false" onAction="#onTopController" prefHeight="18.0" prefWidth="127.0" text="Remain on top" />
       <CheckBox id="sensDataCheckbox" fx:id="sensDataCheckbox" layoutX="14.0" layoutY="108.0" mnemonicParsing="false" onAction="#hideSensitiveDataController" prefHeight="19.0" prefWidth="145.0" selected="true" text="Hide sensitive data" />
