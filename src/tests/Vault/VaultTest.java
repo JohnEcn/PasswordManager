@@ -117,7 +117,44 @@ class VaultTest {
         }
     }
 
+    @Test
+    @DisplayName("Edit Entry test")
+    public void editEntryTest()
+    {
+        Element webCredentials= new WebCredentials("EditedName1","it001002","me@uni.gr","EditedPassword","random.uni.gr/whatever");
+        Element webCredentials2 = new WebCredentials("Gmail","EditedUsername","me@uni.gr","1512dasgs1234","random.uni.gr/whatever");
+        Element debitCard1= new DebitCard("EditedName2",5168213499062633L,(short) 12,(short)25,(short)233,"PETER JACKSON");
+        String ExpectedJsonAfterEdit = "[" +  webCredentials.toJson() + "," + webCredentials2.toJson() + "," + debitCard1.toJson() + "]";
 
+        try
+        {
+            Vault editTestVault = new Vault("editTestvault","123");
 
+            //Insert the elements
+            editTestVault.addElement("uni_Login","it001002","me@uni.gr","123415test_1","random.uni.gr/whatever");
+            editTestVault.addElement("Gmail","it1032182","me@uni.gr","EditedPassword","random.uni.gr/whatever");
+            editTestVault.addElement("Revolut",5168213499062633L,(short) 12,(short)25,(short)233,"PETER JACKSON");
+
+            //Edit the elements
+            editTestVault.editElement("Gmail","Gmail","EditedUsername","me@uni.gr","1512dasgs1234","random.uni.gr/whatever");
+            editTestVault.editElement("EditedName2","Revolut",5168213499062633L,(short) 12,(short)25,(short)233,"PETER JACKSON");
+            editTestVault.editElement("EditedName1","uni_Login","it001002","me@uni.gr","EditedPassword","random.uni.gr/whatever");
+
+            //Get the vault contents as Json
+            String resultJson = editTestVault.getVaultElements();
+
+            //Compare the 2 Json
+            Assertions.assertEquals(ExpectedJsonAfterEdit,resultJson);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            File testVaultFile = new File("editTestvault.vlt");
+            testVaultFile.delete();
+        }
+    }
 
 }

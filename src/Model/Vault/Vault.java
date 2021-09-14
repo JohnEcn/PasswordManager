@@ -102,6 +102,18 @@ public class Vault {
         return true;
     }
 
+    private Element getSpecificElement(String name)
+    {
+        for(int i = 0; i < vaultElements.size(); i++)
+        {
+            if(vaultElements.get(i).getName().equals(name))
+            {
+                return vaultElements.get(i);
+            }
+        }
+        return null;
+    }
+
     public void removeElement(String entryUniqueName)
     {
         for(int i = 0;i<vaultElements.size(); i++)
@@ -125,4 +137,55 @@ public class Vault {
         }
         return Json.substring(0,Json.length() - 1) + "]";
     }
+
+    /** Element edit methods - Overload editElement for additional element Types */
+    public void editElementHandler(String editedElementName, Element element) throws NotUniqueEntryNameException, InvalidArgumentException
+    {
+        String newElementName = element.getName();
+
+        //Checking if the new name of the element is valid ( if newName != oldName )
+        if(!newElementName.equals(editedElementName) && !checkNameUniqueness(newElementName))
+        {
+            //Invalid newName
+            throw new NotUniqueEntryNameException("Entry name has to be unique");
+        }
+
+        //Checking if the new data is valid
+        String isValid = element.validate();
+        if(!isValid.equals("OK"))
+        {
+            //Invalid data
+            throw new InvalidArgumentException(isValid);
+        }
+
+        //Get Element that is edited and change the reference to the tempElement with the changed data
+        Element elementThatIsEdited = getSpecificElement(editedElementName);
+        for(int i = 0; i < vaultElements.size(); i++)
+        {
+            if(vaultElements.get(i).equals(elementThatIsEdited))
+            {
+                vaultElements.set(i,element);
+            }
+        }
+        saveVault();
+    }
+
+    //Debit card edit
+    public void editElement(String newEntryName ,String entryName, long number, short expireMonth, short expireYear, short ccv2 , String ownersName) throws NotUniqueEntryNameException, InvalidArgumentException
+    {
+        Element tempElement = new DebitCard(newEntryName,number,expireMonth,expireYear,ccv2,ownersName);
+        this.editElementHandler(entryName,tempElement);
+    }
+
+    //Web credentials edit
+    public void editElement(String newEntryName ,String entryName, String username, String email, String password, String url) throws NotUniqueEntryNameException, InvalidArgumentException
+    {
+        Element tempElement =  new WebCredentials(newEntryName, username, email, password, url);
+        this.editElementHandler(entryName,tempElement);
+    }
 }
+
+
+
+
+
