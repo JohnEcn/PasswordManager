@@ -65,6 +65,7 @@ public class MainSceneController {
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             messageLabel.setText("Unexpected error occurred.");
         }
 
@@ -89,6 +90,7 @@ public class MainSceneController {
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             displayFeedbackMessage("Unexpected error occurred.", "red");
         }
     }
@@ -116,6 +118,7 @@ public class MainSceneController {
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             displayFeedbackMessage("Unexpected error occurred.", "red");
         }
     }
@@ -180,6 +183,7 @@ public class MainSceneController {
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             displayFeedbackMessage("Unexpected error occurred.", "red");
         }
     }
@@ -193,6 +197,7 @@ public class MainSceneController {
         }
         catch (IOException e)
         {
+            e.printStackTrace();
             displayFeedbackMessage("Unexpected error occurred.", "red");
         }
     }
@@ -239,6 +244,7 @@ public class MainSceneController {
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             displayFeedbackMessage("Entry deletion failed.", "red");
         }
 

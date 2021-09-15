@@ -26,6 +26,7 @@ public class Encryptor {
         catch (UnsupportedEncodingException e)
         {
             //Should never happen
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
@@ -41,6 +42,7 @@ public class Encryptor {
         catch(NoSuchAlgorithmException | UnsupportedEncodingException e)
         {
             //Should never happen
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
@@ -58,6 +60,7 @@ public class Encryptor {
         catch (Exception e)
         {
             //Should never happen
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
@@ -75,11 +78,13 @@ public class Encryptor {
         catch (BadPaddingException e)
         {
             //Wrong decryption Key -> BadPaddingException
+            e.printStackTrace();
             throw e;
         }
         catch (Exception e)
         {
             //Should never happen
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }

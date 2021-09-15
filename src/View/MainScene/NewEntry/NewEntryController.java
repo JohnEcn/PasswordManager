@@ -62,7 +62,9 @@ public class NewEntryController {
             public void handle(MouseEvent m)
             {
                 try {setEntryType(m);}
-                catch (IOException e) {}
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -138,6 +140,7 @@ public class NewEntryController {
         }
         catch(Exception e)
         {
+            e.printStackTrace();
             errorMessageLabel.setText(e.getMessage());
         }
     }

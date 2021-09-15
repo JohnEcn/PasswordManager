@@ -66,6 +66,7 @@ public class EditEntryController {
             }
             catch (Exception e)
             {
+                e.printStackTrace();
             }
         }
     }
@@ -135,6 +136,7 @@ public class EditEntryController {
         }
         catch(Exception e)
         {
+            e.printStackTrace();
             errorMessageLabel.setText(e.getMessage());
         }
     }

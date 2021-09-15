@@ -32,7 +32,7 @@ public class Vault {
         }
         catch (IOException e)
         {
-            // IOException handling here
+            e.printStackTrace();
         }
     }
 
@@ -50,7 +50,7 @@ public class Vault {
         {
             if(e.getClass() == FileNotFoundException.class)
             {
-                //Vault with this name does not exist
+                e.printStackTrace();
                 this.saveVault();
             }
         }

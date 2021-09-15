@@ -51,10 +51,12 @@ public class Serializer {
         }
         catch (FileNotFoundException e)
         {
+            e.printStackTrace();
             throw new FileNotFoundException("File does not exist");
         }
         catch (IOException e)
         {
+            e.printStackTrace();
             throw new IOException("General IO exception");
         }
         finally
@@ -83,14 +85,17 @@ public class Serializer {
         }
         catch (FileNotFoundException e)
         {
+            e.printStackTrace();
             throw new FileNotFoundException("File does not exist");
         }
         catch (IOException e)
         {
+            e.printStackTrace();
             throw new IOException("General IO exception");
         }
         catch (ClassNotFoundException e)
         {
+            e.printStackTrace();
             throw new RuntimeException("Unrecoverable Exception");
         }
         finally
@@ -114,6 +119,7 @@ public class Serializer {
             }
             catch (BadPaddingException e)
             {
+                e.printStackTrace();
                 throw e;
             }
         }

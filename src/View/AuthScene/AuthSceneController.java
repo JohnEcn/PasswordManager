@@ -144,6 +144,7 @@ public class AuthSceneController implements Initializable {
                     }
                     catch (IOException e)
                     {
+                        e.printStackTrace();
                         /** Display error message */
                     }
                 }
@@ -174,6 +175,7 @@ public class AuthSceneController implements Initializable {
                     }
                     catch (IOException e)
                     {
+                        e.printStackTrace();
                         /** Display error message */
                     }
                 }
@@ -194,7 +196,7 @@ public class AuthSceneController implements Initializable {
         }
         catch (Exception e)
         {
-
+            e.printStackTrace();
         }
 
     }
@@ -230,6 +232,7 @@ public class AuthSceneController implements Initializable {
             {
                 displayGeneralError("Unexpected error occurred.");
             }
+            e.printStackTrace();
         }
     }
     public void newVault()
@@ -256,7 +259,7 @@ public class AuthSceneController implements Initializable {
         catch (Exception e)
         {
             Label errorLabel = (Label) usersHbox.lookup("#passErrorMessageLabel");
-
+            e.printStackTrace();
             if(e.getClass() == FileAlreadyExistsException.class)
             {
                 errorLabel.setText("This vault name already exists.");

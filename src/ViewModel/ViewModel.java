@@ -39,10 +39,12 @@ public class ViewModel {
                 this.isVaultOpen = true;
                 this.vaultName = vaultName;
             } catch (IncorrectSecretKeyException | InvalidArgumentException e) {
+                e.printStackTrace();
                 this.vault = null;
                 this.isVaultOpen = false;
                 throw e;
             } catch (Exception e) {
+                e.printStackTrace();
                 this.vault = null;
                 this.isVaultOpen = false;
                 throw new Exception("Unexpected error occurred");
@@ -60,19 +62,23 @@ public class ViewModel {
                 this.isVaultOpen = true;
                 this.vaultName = vaultName;
             }
-            catch (IncorrectSecretKeyException e) {
+            catch (IncorrectSecretKeyException e)
+            {
+                e.printStackTrace();
                 this.vault = null;
                 this.isVaultOpen = false;
                 throw new FileAlreadyExistsException("Vault exists");
             }
             catch (InvalidArgumentException e)
             {
+                e.printStackTrace();
                 this.vault = null;
                 this.isVaultOpen = false;
                 throw new InvalidArgumentException(e.getMessage());
             }
             catch (Exception e)
             {
+                e.printStackTrace();
                 this.vault = null;
                 this.isVaultOpen = false;
                 throw new Exception("Unexpected error occurred");
@@ -144,6 +150,7 @@ public class ViewModel {
             }
             catch (Exception e)
             {
+                e.printStackTrace();
                 if(e.getClass() == NumberFormatException.class)
                 {
                     throw new InvalidArgumentException("Empty fields.");
@@ -181,6 +188,7 @@ public class ViewModel {
             }
             catch (Exception e)
             {
+                e.printStackTrace();
                 if(e.getClass() == NumberFormatException.class)
                 {
                     throw new InvalidArgumentException("Empty fields.");
