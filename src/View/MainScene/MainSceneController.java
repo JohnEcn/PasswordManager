@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -75,7 +76,8 @@ public class MainSceneController {
     public static void loadMainScene(Scene scene) throws IOException
     {
         /** Loads this controller's Scene */
-        Parent root = FXMLLoader.load(MainSceneController.class.getResource( "../MainScene/mainScene.fxml"));
+        URL fxmlURL = MainSceneController.class.getResource("mainScene.fxml");
+        Parent root = FXMLLoader.load(fxmlURL);
         scene.setRoot(root);
     }
 
@@ -262,7 +264,8 @@ public class MainSceneController {
     /** Methods that build the entry rows for each entry type */
     private AnchorPane getWebCredRow(Map<String,Object> data) throws IOException
     {
-        AnchorPane newRow = FXMLLoader.load(getClass().getResource("/View/MainScene/EntryRow/wevCredRow.fxml"));
+        URL fxmlURL = MainSceneController.class.getResource("EntryRow/wevCredRow.fxml");
+        AnchorPane newRow = FXMLLoader.load(fxmlURL);
 
         Label entryNameLabel = (Label) newRow.lookup("#entryNameLabel");
         entryNameLabel.setText((String)data.get("name"));
@@ -290,8 +293,9 @@ public class MainSceneController {
     }
 
     private AnchorPane getCreditCardRow(Map<String,Object> data) throws IOException
-    {
-        AnchorPane newRow = FXMLLoader.load(getClass().getResource("/View/MainScene/EntryRow/creditCardRow.fxml"));
+    { 
+        URL fxmlURL = MainSceneController.class.getResource("EntryRow/creditCardRow.fxml");
+        AnchorPane newRow = FXMLLoader.load(fxmlURL);
 
         Label entryNameLabel = (Label) newRow.lookup("#entryNameLabel");
         entryNameLabel.setText((String)data.get("name"));

@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Map;
 
 import static View.MainScene.MainSceneController.loadMainScene;
@@ -34,10 +35,12 @@ public class NewEntryController {
     private String currentTypeSelected = "webCredType";
 
     @FXML
-    protected void initialize() throws IOException {
+    protected void initialize() throws IOException
+    {
         setMouseClickTypeButton();
 
-        Parent node = FXMLLoader.load(MainSceneController.class.getResource( "../MainScene/NewEntry/EntryTypes/webNewEntry.fxml"));
+        URL fxmlURL = NewEntryController.class.getResource("EntryTypes/webNewEntry.fxml");
+        Parent node = FXMLLoader.load(fxmlURL);
         valuesAp.getChildren().clear();
         valuesAp.getChildren().add(node);
         webBorderRegion.setStyle("-fx-border-color: #FF7E06;");
@@ -45,7 +48,8 @@ public class NewEntryController {
 
     public static void loadNewEntryUI(VBox root) throws IOException
     {
-        Parent node = FXMLLoader.load(MainSceneController.class.getResource( "../MainScene/NewEntry/newEntry.fxml"));
+        URL fxmlURL = NewEntryController.class.getResource("newEntry.fxml");
+        Parent node = FXMLLoader.load(fxmlURL);
         root.getChildren().clear();
         root.getChildren().add(node);
     }
@@ -92,13 +96,15 @@ public class NewEntryController {
         Parent node = null;
         if(entryType.equals("ccType"))
         {
-           node = FXMLLoader.load(MainSceneController.class.getResource( "../MainScene/NewEntry/EntryTypes/ccNewEntry.fxml"));
-           ccBorderRegion.setStyle("-fx-border-color: #FF7E06;");
-           currentTypeSelected = "ccType";
+            URL fxmlURL = getClass().getResource("EntryTypes/ccNewEntry.fxml");
+            node = FXMLLoader.load(fxmlURL);
+            ccBorderRegion.setStyle("-fx-border-color: #FF7E06;");
+            currentTypeSelected = "ccType";
         }
         else if(entryType.equals("webCredType"))
         {
-            node = FXMLLoader.load(MainSceneController.class.getResource( "../MainScene/NewEntry/EntryTypes/webNewEntry.fxml"));
+            URL fxmlURL = getClass().getResource("EntryTypes/webNewEntry.fxml");
+            node = FXMLLoader.load(fxmlURL);
             webBorderRegion.setStyle("-fx-border-color: #FF7E06;");
             currentTypeSelected = "webCredType";
         }
@@ -132,7 +138,6 @@ public class NewEntryController {
              }
 
             //Call the MainSceneController method to pass the data to ViewModel
-
             MainSceneController mainSceneController = MainSceneController.getInstance();
             mainSceneController.addNewEntry(data);
             this.backToMainScene();
