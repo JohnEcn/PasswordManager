@@ -70,6 +70,13 @@ public class Vault {
         this.insertionHandler(webCredentials);
     }
 
+    //Blockchain keys add
+    public void addElement(String entryName, String publicKey, String privateKey) throws NotUniqueEntryNameException, InvalidArgumentException
+    {
+        Element blockchainKeys = new BlockchainKeys(entryName,publicKey,privateKey);
+        this.insertionHandler(blockchainKeys);
+    }
+
     private void insertionHandler(Element entry) throws NotUniqueEntryNameException, InvalidArgumentException
     {
         boolean nameValidity = this.checkNameUniqueness(entry.getName());
@@ -182,6 +189,13 @@ public class Vault {
     {
         Element tempElement =  new WebCredentials(newEntryName, username, email, password, url);
         this.editElementHandler(entryName,tempElement);
+    }
+
+    //Blockchain keys add
+    public void editElement(String newEntryName,String entryName, String publicKey, String privateKey) throws NotUniqueEntryNameException, InvalidArgumentException
+    {
+        Element tempBlockchainKeys = new BlockchainKeys(newEntryName,publicKey,privateKey);
+        this.editElementHandler(entryName,tempBlockchainKeys);
     }
 }
 

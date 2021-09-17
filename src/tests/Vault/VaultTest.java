@@ -2,10 +2,7 @@ package tests.Vault;
 
 import Model.CustomExceptions.IncorrectSecretKeyException;
 import Model.CustomExceptions.NotUniqueEntryNameException;
-import Model.Vault.DebitCard;
-import Model.Vault.Element;
-import Model.Vault.Vault;
-import Model.Vault.WebCredentials;
+import Model.Vault.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -62,12 +59,14 @@ class VaultTest {
         //Create objects and their Json representation to compare them with the vault output
         Element debitCard1= new DebitCard("DebitCard_1",5168213499062633L,(short) 12,(short)25,(short)233,"PETER JACKSON");
         Element webCredentials= new WebCredentials("Uni Services","it001002","me@uni.gr","testPassword123","random.uni.gr/whatever");
-        String correctJson = "[" +  debitCard1.toJson() + "," +  webCredentials.toJson() + "]";
+        Element blockchainKeys = new BlockchainKeys("Eth 1","0x17B86a7Ce9829B97AAB346fdbFC27dA0976d476e","88771d875fc0494bd736ab46b962e986d010381ccb4a629901bfc05578dbb2e3");
+        String correctJson = "[" +  debitCard1.toJson() + "," +  webCredentials.toJson() + "," + blockchainKeys.toJson() + "]";
         try
         {
-            //Add 2 new valid entry to the vault (same with the ones created before)
+            //Add 3 new valid entry to the vault (same with the ones created before)
             testVault.addElement("DebitCard_1",5168213499062633L,(short) 12,(short)25,(short)233,"PETER JACKSON");
             testVault.addElement( "Uni Services","it001002","me@uni.gr","testPassword123","random.uni.gr/whatever");
+            testVault.addElement( "Eth 1","0x17B86a7Ce9829B97AAB346fdbFC27dA0976d476e","88771d875fc0494bd736ab46b962e986d010381ccb4a629901bfc05578dbb2e3");
 
             //Create new instance of vault (new Login) and retrieve the entries
             Vault testVaultNew = new Vault("testVault","secretKey!");
@@ -105,6 +104,7 @@ class VaultTest {
         try
         {
             testVault.removeElement("DebitCard_1");
+            testVault.removeElement("Eth 1");
 
             //Create new instance of vault (new Login) and retrieve the entries
             Vault testVaultNew = new Vault("testVault","secretKey!");
@@ -124,7 +124,8 @@ class VaultTest {
         Element webCredentials= new WebCredentials("EditedName1","it001002","me@uni.gr","EditedPassword","random.uni.gr/whatever");
         Element webCredentials2 = new WebCredentials("Gmail","EditedUsername","me@uni.gr","1512dasgs1234","random.uni.gr/whatever");
         Element debitCard1= new DebitCard("EditedName2",5168213499062633L,(short) 12,(short)25,(short)233,"PETER JACKSON");
-        String ExpectedJsonAfterEdit = "[" +  webCredentials.toJson() + "," + webCredentials2.toJson() + "," + debitCard1.toJson() + "]";
+        Element blockchainKeys = new BlockchainKeys("Edited Eth 1","2x17B86a7Ce9829B97AAB346fdbFC27dA0976d476e","88771d875fc0494bd736ab46b962e986d010381ccb4a629901bfc05578dbb2e3");
+        String ExpectedJsonAfterEdit = "[" +  webCredentials.toJson() + "," + webCredentials2.toJson() + "," + debitCard1.toJson() + "," + blockchainKeys.toJson() + "]";
 
         try
         {
@@ -134,11 +135,14 @@ class VaultTest {
             editTestVault.addElement("uni_Login","it001002","me@uni.gr","123415test_1","random.uni.gr/whatever");
             editTestVault.addElement("Gmail","it1032182","me@uni.gr","EditedPassword","random.uni.gr/whatever");
             editTestVault.addElement("Revolut",5168213499062633L,(short) 12,(short)25,(short)233,"PETER JACKSON");
+            editTestVault.addElement("Eth 1","0x17B86a7Ce9829B97AAB346fdbFC27dA0976d476e","88771d875fc0494bd736ab46b962e986d010381ccb4a629901bfc05578dbb2e3");
+
 
             //Edit the elements
             editTestVault.editElement("Gmail","Gmail","EditedUsername","me@uni.gr","1512dasgs1234","random.uni.gr/whatever");
             editTestVault.editElement("EditedName2","Revolut",5168213499062633L,(short) 12,(short)25,(short)233,"PETER JACKSON");
             editTestVault.editElement("EditedName1","uni_Login","it001002","me@uni.gr","EditedPassword","random.uni.gr/whatever");
+            editTestVault.editElement("Edited Eth 1","Eth 1","2x17B86a7Ce9829B97AAB346fdbFC27dA0976d476e","88771d875fc0494bd736ab46b962e986d010381ccb4a629901bfc05578dbb2e3");
 
             //Get the vault contents as Json
             String resultJson = editTestVault.getVaultElements();

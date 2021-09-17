@@ -161,6 +161,11 @@ public class ViewModel {
                 }
             }
         }
+        else if(newEntryType.equals("blockchainKeys"))
+        {
+            vault.addElement(data.get("name"),data.get("publicKey"),data.get("privateKey"));
+        }
+        /** New entry types are added as else-if statements that call the addElement method */
     }
 
     public void removeElement(String elementName)
@@ -199,6 +204,10 @@ public class ViewModel {
                 }
             }
         }
+        else if(newEntryType.equals("blockchainKeys"))
+        {
+            vault.editElement(elementData.get("name"),elementName,elementData.get("publicKey"),elementData.get("privateKey"));
+        }
+        /** New entry types are added as else-if statements that call the addElement method */
     }
-
 }
