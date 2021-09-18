@@ -1,14 +1,9 @@
 package View.MainScene.NewEntry.EntryTypes;
-import View.MainScene.MainSceneController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
