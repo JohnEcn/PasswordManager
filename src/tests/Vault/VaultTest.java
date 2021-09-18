@@ -161,4 +161,22 @@ class VaultTest {
         }
     }
 
+    @Test
+    @DisplayName("temp")
+    public void tempTest()
+    {
+        try
+        {
+            Vault v = new Vault("John","123");
+            v.addElement("Eth","0x79F2ac9478617F1fe767b6e5e250856Bdb63112D","c11804fb0a5d42994c5964ccb30404ddd4e3fce17f6ca6be984c79dcfe2694b4");
+        }
+        catch (Exception e)
+        {
+
+        }
+
+
+    }
+
+
 }

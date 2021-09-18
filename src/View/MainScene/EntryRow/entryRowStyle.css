@@ -12,14 +12,14 @@
     -fx-cursor:"hand";
 }
 #emailLabel,#usernameLabel,#passwordLabel,#urlLabel,
-#ccNumberLabel,#expDateLabel,#ccv2Label,#ownersNameLabel {
+#ccNumberLabel,#expDateLabel,#ccv2Label,#ownersNameLabel,#privateKeyLabel,#publicKeyLabel {
     -fx-underline: true;
     -fx-text-fill: #000000;
     -fx-opacity:0.64;
     -fx-font-size:12px;
 }
 #emailValue,#usernameValue,#passwordValue,#urlValue,
-#ccNumberValue,#expDateValue,#ccv2Value,#ownersNameValue {
+#ccNumberValue,#expDateValue,#ccv2Value,#ownersNameValue,#privateKeyValue,#publicKeyValue{
     -fx-cursor:"hand";
     -fx-text-fill:white;
     -fx-font-size:14px;

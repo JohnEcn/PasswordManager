@@ -1,6 +1,7 @@
 package View.MainScene.EditEntry;
 
 import View.MainScene.MainSceneController;
+import View.MainScene.NewEntry.EntryTypes.BlockchainKeyNewEntryController;
 import View.MainScene.NewEntry.EntryTypes.EntryType;
 import View.MainScene.NewEntry.EntryTypes.WebNewEntryController;
 import View.MainScene.NewEntry.EntryTypes.ccNewEntryController;
@@ -92,6 +93,12 @@ public class EditEntryController {
             node = FXMLLoader.load(fxmlURL);
             controller = ccNewEntryController.getInstance();
         }
+        else if(entryType.equals("blockchainKeys"))
+        {
+            URL fxmlURL = NewEntryController.class.getResource("EntryTypes/blockchainKeyNewEntry.fxml");
+            node = FXMLLoader.load(fxmlURL);
+            controller = BlockchainKeyNewEntryController.getInstance();
+        }
 
         valuesAp.getChildren().clear();
         valuesAp.getChildren().add(node);
@@ -112,6 +119,10 @@ public class EditEntryController {
         else if(currentTypeSelected.equals("DebitCard"))
         {
             entryController = ccNewEntryController.getInstance();
+        }
+        else if(currentTypeSelected.equals("blockchainKeys"))
+        {
+            entryController = BlockchainKeyNewEntryController.getInstance();
         }
         /** Additional types of entries go here as else-if */
         try

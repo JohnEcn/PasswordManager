@@ -1,6 +1,7 @@
 package View.MainScene.NewEntry;
 
 import View.MainScene.MainSceneController;
+import View.MainScene.NewEntry.EntryTypes.BlockchainKeyNewEntryController;
 import View.MainScene.NewEntry.EntryTypes.EntryType;
 import View.MainScene.NewEntry.EntryTypes.WebNewEntryController;
 import View.MainScene.NewEntry.EntryTypes.ccNewEntryController;
@@ -10,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -29,6 +31,8 @@ public class NewEntryController {
     @FXML private ImageView ccType;
     @FXML private Region ccBorderRegion;
     @FXML private ImageView webCredType;
+    @FXML private Region blockChainKeyBorderRegion;
+    @FXML private ImageView blockchainKeyType;
     @FXML private Region webBorderRegion;
     @FXML private Label errorMessageLabel;
 
@@ -61,27 +65,23 @@ public class NewEntryController {
 
     private void setMouseClickTypeButton()
     {
-        ccType.setOnMouseClicked(new EventHandler<MouseEvent>()
+        //This array holds the 'buttons' that when clicked a entry type is selected
+        //To add a new button simply add an imageView in the array
+        ImageView[] entryTypesButtons = {ccType , webCredType ,blockchainKeyType};
+
+        for(int i = 0; i<entryTypesButtons.length; i++)
         {
-            public void handle(MouseEvent m)
+            entryTypesButtons[i].setOnMouseClicked(new EventHandler<MouseEvent>()
             {
-                try {setEntryType(m);}
-                catch (IOException e) {
-                    e.printStackTrace();
+                public void handle(MouseEvent m)
+                {
+                    try {setEntryType(m);}
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
-
-        webCredType.setOnMouseClicked(new EventHandler<MouseEvent>()
-        {
-            public void handle(MouseEvent m)
-            {
-                try {setEntryType(m);}
-                catch (IOException e) {}
-            }
-        });
-
-        /** Additional types can be added here */
+            });
+        }
     }
 
     public void setEntryType(MouseEvent m) throws IOException
@@ -92,6 +92,7 @@ public class NewEntryController {
 
         webBorderRegion.setStyle("-fx-border-color: #C0C0C0;");
         ccBorderRegion.setStyle("-fx-border-color: #C0C0C0;");
+        blockChainKeyBorderRegion.setStyle("-fx-border-color: #C0C0C0;");
 
         Parent node = null;
         if(entryType.equals("ccType"))
@@ -107,6 +108,13 @@ public class NewEntryController {
             node = FXMLLoader.load(fxmlURL);
             webBorderRegion.setStyle("-fx-border-color: #FF7E06;");
             currentTypeSelected = "webCredType";
+        }
+        else if(entryType.equals("blockchainKeyType"))
+        {
+            URL fxmlURL = getClass().getResource("EntryTypes/blockchainKeyNewEntry.fxml");
+            node = FXMLLoader.load(fxmlURL);
+            blockChainKeyBorderRegion.setStyle("-fx-border-color: #FF7E06;");
+            currentTypeSelected = "blockchainKeyType";
         }
         /** Additional types can be added here as else if statements */
 
@@ -126,6 +134,10 @@ public class NewEntryController {
         else if(currentTypeSelected.equals("ccType"))
         {
             entryController = ccNewEntryController.getInstance();
+        }
+        else if(currentTypeSelected.equals("blockchainKeyType"))
+        {
+            entryController = BlockchainKeyNewEntryController.getInstance();
         }
         /** Additional types of entries go here as else-if */
         try

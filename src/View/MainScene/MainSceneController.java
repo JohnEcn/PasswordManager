@@ -227,6 +227,11 @@ public class MainSceneController {
                 AnchorPane newRow = getCreditCardRow(vaultContents.get(i));
                 rows.add(newRow);
             }
+            else if(entryType.equals("blockchainKeys"))
+            {
+                AnchorPane newRow = getBlockChainKeysRow(vaultContents.get(i));
+                rows.add(newRow);
+            }
         }
         /** ------------------------------------------------------- */
 
@@ -326,6 +331,28 @@ public class MainSceneController {
 
         return newRow;
 
+    }
+
+    private AnchorPane getBlockChainKeysRow(Map<String,Object> data) throws IOException
+    {
+        URL fxmlURL = MainSceneController.class.getResource("EntryRow/blockchainKeysRow.fxml");
+        AnchorPane newRow = FXMLLoader.load(fxmlURL);
+
+        Label entryNameLabel = (Label) newRow.lookup("#entryNameLabel");
+        entryNameLabel.setText((String)data.get("name"));
+        editEntryClickListener(entryNameLabel,data);
+        entryNameLabel.setTooltip(new Tooltip("Edit"));
+
+        Label publicKey = (Label) newRow.lookup("#publicKeyValue");
+        publicKey.setText((String)data.get("publicKey"));
+        addMouseClickListener(publicKey);
+
+        Label privateKey = (Label) newRow.lookup("#privateKeyValue");
+        privateKey.setText((String)data.get("privateKey"));
+        privateKey.setEffect(boxBlur);
+        addMouseClickListener(privateKey);
+
+        return newRow;
     }
 
     private ArrayList<Map<String,Object>> filterEntries(ArrayList<Map<String,Object>> entries)

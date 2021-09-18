@@ -11,19 +11,19 @@
 {
     -fx-fill: red;
 }
-#webBorderRegion,#ccBorderRegion {
+#webBorderRegion,#ccBorderRegion,#blockChainKeyBorderRegion {
     -fx-background-color: #2A2F33;
     -fx-border-radius:16px;
     -fx-background-radius:16px;
     -fx-border-width:1px;
     -fx-border-color:#C0C0C0;
     }
-#webTypeLabel,#ccTypeLabel {
+#webTypeLabel,#ccTypeLabel{
     -fx-text-fill:black;
     -fx-font-size:10px;
     -fx-alignment:center;
 }
-#webCredType,#ccType {
+#webCredType,#ccType,#blockchainKeyType {
     -fx-cursor:"hand";
 }
 #saveBut,#cancelBut,#deleteBut {
@@ -60,7 +60,7 @@
     -fx-text-fill:white;
     -fx-font-size:15px;
 }
-#newValue1,#newValue2,#newValue3,#newValue4,#nameValue,#ccNumberNew{
+#newValue1,#newValue2,#newValue3,#newValue4,#nameValue,#ccNumberNew,#publicKeyNewValue,#privateKeyNewValue{
     -fx-background-color: #555A5E;
     -fx-background-radius:5px;
     -fx-font-size:13px;
