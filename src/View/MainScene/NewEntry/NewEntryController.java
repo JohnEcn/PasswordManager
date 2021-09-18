@@ -11,7 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -22,6 +21,11 @@ import java.net.URL;
 import java.util.Map;
 
 import static View.MainScene.MainSceneController.loadMainScene;
+
+/**
+ *  This class is responsible for displaying the UI for adding a new entry
+ *  and also for collecting the new entry data and passing them to the MainSceneController.saveNewEntry()*
+ */
 
 public class NewEntryController {
 
@@ -89,35 +93,34 @@ public class NewEntryController {
         ImageView iv = (ImageView)m.getSource();
         String entryType = iv.getId();
         if(entryType.equals(currentTypeSelected)){return;}
-
-        webBorderRegion.setStyle("-fx-border-color: #C0C0C0;");
-        ccBorderRegion.setStyle("-fx-border-color: #C0C0C0;");
-        blockChainKeyBorderRegion.setStyle("-fx-border-color: #C0C0C0;");
-
         Parent node = null;
-        if(entryType.equals("ccType"))
-        {
-            URL fxmlURL = getClass().getResource("EntryTypes/ccNewEntry.fxml");
-            node = FXMLLoader.load(fxmlURL);
-            ccBorderRegion.setStyle("-fx-border-color: #FF7E06;");
-            currentTypeSelected = "ccType";
-        }
-        else if(entryType.equals("webCredType"))
-        {
-            URL fxmlURL = getClass().getResource("EntryTypes/webNewEntry.fxml");
-            node = FXMLLoader.load(fxmlURL);
-            webBorderRegion.setStyle("-fx-border-color: #FF7E06;");
-            currentTypeSelected = "webCredType";
-        }
-        else if(entryType.equals("blockchainKeyType"))
-        {
-            URL fxmlURL = getClass().getResource("EntryTypes/blockchainKeyNewEntry.fxml");
-            node = FXMLLoader.load(fxmlURL);
-            blockChainKeyBorderRegion.setStyle("-fx-border-color: #FF7E06;");
-            currentTypeSelected = "blockchainKeyType";
-        }
-        /** Additional types can be added here as else if statements */
 
+        //To add a button for a new entry type,
+        // (1) Add the entry type name
+        // (2) add the fxml file that corresponds to the new entry and
+        // (3) Add the button region of the new button
+        String[] entryTypeName = {"ccType","webCredType","blockchainKeyType"};
+        String[] entryTypeFXML = {"ccNewEntry","webNewEntry","blockchainKeyNewEntry"};
+        Region[] buttonRegion =  {ccBorderRegion,webBorderRegion,blockChainKeyBorderRegion};
+
+        for(int i =0; i<buttonRegion.length; i++)
+        {
+            //Reset the borders of all buttons so they appear not selected
+            buttonRegion[i].setStyle("-fx-border-color: #C0C0C0;");
+        }
+
+        for(int i =0; i<entryTypeName.length; i++)
+        {
+            //Load the correct fxml and set the border of the pressed button orange
+            if(entryType.equals(entryTypeName[i]))
+            {
+                URL fxmlURL = getClass().getResource("EntryTypes/"+entryTypeFXML[i]+".fxml");
+                node = FXMLLoader.load(fxmlURL);
+                buttonRegion[i].setStyle("-fx-border-color: #FF7E06;");
+                currentTypeSelected = entryTypeName[i];
+                break;
+            }
+        }
         valuesAp.getChildren().clear();
         valuesAp.getChildren().add(node);
     }
@@ -127,27 +130,27 @@ public class NewEntryController {
         Map<String,String> data = null;
         EntryType entryController = null;
 
-        if(currentTypeSelected.equals("webCredType"))
+        //Get the instance of the correct controller depending of the entry type
+        String[] entryTypeName = {"ccType","webCredType","blockchainKeyType"};
+        EntryType[] entryTypesControllers = {ccNewEntryController.getInstance(),WebNewEntryController.getInstance(),BlockchainKeyNewEntryController.getInstance()};
+
+        for (int i=0; i<entryTypeName.length; i++)
         {
-            entryController = WebNewEntryController.getInstance();
+            if(currentTypeSelected.equals(entryTypeName[i]))
+            {
+                entryController = entryTypesControllers[i];
+            }
         }
-        else if(currentTypeSelected.equals("ccType"))
-        {
-            entryController = ccNewEntryController.getInstance();
-        }
-        else if(currentTypeSelected.equals("blockchainKeyType"))
-        {
-            entryController = BlockchainKeyNewEntryController.getInstance();
-        }
-        /** Additional types of entries go here as else-if */
+
         try
         {
             //Collect the data
-             data = entryController.collectData();
-             data.put("name",nameValue.getText());
-             if(nameValue.getText().equals("")){
-                 throw new Exception("Name cannot be empty");
-             }
+            data = entryController.collectData();
+            data.put("name",nameValue.getText());
+            if(nameValue.getText().equals(""))
+            {
+                throw new Exception("Name cannot be empty");
+            }
 
             //Call the MainSceneController method to pass the data to ViewModel
             MainSceneController mainSceneController = MainSceneController.getInstance();
