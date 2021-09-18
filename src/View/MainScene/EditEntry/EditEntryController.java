@@ -1,10 +1,7 @@
 package View.MainScene.EditEntry;
 
 import View.MainScene.MainSceneController;
-import View.MainScene.NewEntry.EntryTypes.BlockchainKeyNewEntryController;
 import View.MainScene.NewEntry.EntryTypes.EntryType;
-import View.MainScene.NewEntry.EntryTypes.WebNewEntryController;
-import View.MainScene.NewEntry.EntryTypes.ccNewEntryController;
 import View.MainScene.NewEntry.NewEntryController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,13 +19,17 @@ import java.util.Set;
 
 import static View.MainScene.MainSceneController.loadMainScene;
 
+/**
+ *  This class is responsible for displaying the UI for editing and deleting an entry
+ *  and also for collecting the new entry data and passing them to the MainSceneController.saveEntryChanges()
+ */
+
 public class EditEntryController {
 
     private static Map<String,Object> data;
     public static void loadEditEntryUI(Map<String,Object> entryData , VBox entriesPanel) throws IOException
     {
         EditEntryController.data = entryData;
-
         URL fxmlURL = EditEntryController.class.getResource("editEntry.fxml");
         Parent node = FXMLLoader.load(fxmlURL);
         entriesPanel.getChildren().clear();
@@ -38,6 +39,7 @@ public class EditEntryController {
     @FXML private TextField nameValue;
     @FXML private AnchorPane valuesAp;
     @FXML private Label errorMessageLabel;
+    private EntryType entryTypeController = null;
 
     @FXML
     protected void initialize() throws IOException
@@ -81,23 +83,20 @@ public class EditEntryController {
         EntryType controller = null;
         Parent node = null;
 
-        if(entryType.equals("webCredentials"))
+        //Load the correct fxml of the entry type that is edited
+        String[] entryTypeName = {"webCredentials","DebitCard","blockchainKeys"};
+        String[] entryTypeFXML = {"webNewEntry","ccNewEntry","blockchainKeyNewEntry"};
+        for(int i = 0; i< entryTypeName.length; i++)
         {
-            URL fxmlURL = NewEntryController.class.getResource("EntryTypes/webNewEntry.fxml");
-            node = FXMLLoader.load(fxmlURL);
-            controller = WebNewEntryController.getInstance();
-        }
-        else if(entryType.equals("DebitCard"))
-        {
-            URL fxmlURL = NewEntryController.class.getResource("EntryTypes/ccNewEntry.fxml");
-            node = FXMLLoader.load(fxmlURL);
-            controller = ccNewEntryController.getInstance();
-        }
-        else if(entryType.equals("blockchainKeys"))
-        {
-            URL fxmlURL = NewEntryController.class.getResource("EntryTypes/blockchainKeyNewEntry.fxml");
-            node = FXMLLoader.load(fxmlURL);
-            controller = BlockchainKeyNewEntryController.getInstance();
+            if(entryType.equals(entryTypeName[i]))
+            {
+                URL fxmlURL = NewEntryController.class.getResource("EntryTypes/"+ entryTypeFXML[i] +".fxml");
+                FXMLLoader loader = new FXMLLoader(fxmlURL);
+                node = loader.load();
+                controller = loader.getController();
+                this.entryTypeController = controller;
+                break;
+            }
         }
 
         valuesAp.getChildren().clear();
@@ -108,23 +107,9 @@ public class EditEntryController {
     public void saveChanges()
     {
         Map<String,String> newData = null;
-        EntryType entryController = null;
-        String currentTypeSelected = (String) data.get("type");
+        EntryType entryController = this.entryTypeController;
         boolean changedDataFlag  = false;
 
-        if(currentTypeSelected.equals("webCredentials"))
-        {
-            entryController = WebNewEntryController.getInstance();
-        }
-        else if(currentTypeSelected.equals("DebitCard"))
-        {
-            entryController = ccNewEntryController.getInstance();
-        }
-        else if(currentTypeSelected.equals("blockchainKeys"))
-        {
-            entryController = BlockchainKeyNewEntryController.getInstance();
-        }
-        /** Additional types of entries go here as else-if */
         try
         {
             //Collect the data
@@ -136,7 +121,6 @@ public class EditEntryController {
             {
                 //No change in data
                 backToMainScene();
-                System.out.println("no change");
                 return;
             }
 

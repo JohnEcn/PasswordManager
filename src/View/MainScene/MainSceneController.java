@@ -3,7 +3,6 @@ package View.MainScene;
 import Model.CustomExceptions.InvalidArgumentException;
 import Model.CustomExceptions.NotUniqueEntryNameException;
 import View.MainScene.EditEntry.EditEntryController;
-import View.MainScene.NewEntry.EntryTypes.ccNewEntryController;
 import View.Utilities.Utilities;
 import ViewModel.ViewModel;
 import javafx.animation.FadeTransition;
@@ -25,13 +24,20 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
 
 import static View.MainScene.NewEntry.NewEntryController.loadNewEntryUI;
+
+/**
+ *  This class is responsible for communicating with the ViewModel for saving, deleting
+ *  editing and getting the vault entries.
+ *
+ *  Also this class displays the vault contents and initiates the addition of new entries
+ *  and the editing of existing.
+ */
 
 public class MainSceneController {
 
@@ -134,7 +140,7 @@ public class MainSceneController {
         content.putString(value.getText());
         clipboard.setContent(content);
 
-        /** Feedback that the value is copied */
+        // Feedback that the value is copied
         displayFeedbackMessage("Value copied..","black");
     }
 

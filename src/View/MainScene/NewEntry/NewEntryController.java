@@ -24,7 +24,7 @@ import static View.MainScene.MainSceneController.loadMainScene;
 
 /**
  *  This class is responsible for displaying the UI for adding a new entry
- *  and also for collecting the new entry data and passing them to the MainSceneController.saveNewEntry()*
+ *  and also for collecting the new entry data and passing them to the MainSceneController.saveNewEntry()
  */
 
 public class NewEntryController {
@@ -41,7 +41,7 @@ public class NewEntryController {
     @FXML private Label errorMessageLabel;
 
     private String currentTypeSelected = "webCredType";
-
+    private EntryType currentEntryController = null;
     @FXML
     protected void initialize() throws IOException
     {
@@ -115,9 +115,11 @@ public class NewEntryController {
             if(entryType.equals(entryTypeName[i]))
             {
                 URL fxmlURL = getClass().getResource("EntryTypes/"+entryTypeFXML[i]+".fxml");
-                node = FXMLLoader.load(fxmlURL);
+                FXMLLoader loader = new FXMLLoader(fxmlURL);
+                node = loader.load();
                 buttonRegion[i].setStyle("-fx-border-color: #FF7E06;");
                 currentTypeSelected = entryTypeName[i];
+                currentEntryController = loader.getController();
                 break;
             }
         }
@@ -128,19 +130,7 @@ public class NewEntryController {
     public void saveNewEntry() throws IOException
     {
         Map<String,String> data = null;
-        EntryType entryController = null;
-
-        //Get the instance of the correct controller depending of the entry type
-        String[] entryTypeName = {"ccType","webCredType","blockchainKeyType"};
-        EntryType[] entryTypesControllers = {ccNewEntryController.getInstance(),WebNewEntryController.getInstance(),BlockchainKeyNewEntryController.getInstance()};
-
-        for (int i=0; i<entryTypeName.length; i++)
-        {
-            if(currentTypeSelected.equals(entryTypeName[i]))
-            {
-                entryController = entryTypesControllers[i];
-            }
-        }
+        EntryType entryController = currentEntryController;
 
         try
         {
