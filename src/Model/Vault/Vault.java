@@ -12,15 +12,13 @@ import java.util.ArrayList;
 public class Vault {
 
     private final String vaultName;
-    private final String encryptionKey;
     private final Serializer IOHandler;
     private  ArrayList<Element> vaultElements = new ArrayList<Element>();
 
     public Vault(String vaultName, String encryptionKey) throws IncorrectSecretKeyException , InvalidArgumentException
     {
         this.vaultName = vaultName;
-        this.encryptionKey = encryptionKey;
-        this.IOHandler = new Serializer(this.vaultName,this.encryptionKey);
+        this.IOHandler = new Serializer(this.vaultName,encryptionKey);
         this.retrieveVault();
     }
 
