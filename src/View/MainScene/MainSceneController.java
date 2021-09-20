@@ -365,6 +365,10 @@ public class MainSceneController {
     {
         //Get entry names in an arraylist
         ArrayList<String> entryNames = new ArrayList<>();
+        ArrayList<Map<String,Object>> results = new ArrayList<>();
+
+        if(entries == null){return results;}
+
         for(int i=0; i<entries.size(); i++)
         {
             entryNames.add((String)entries.get(i).get("name"));
@@ -376,8 +380,7 @@ public class MainSceneController {
         //Search the entry names for matches using the searchQuery
         String[] searchResults = Utilities.searchFunction(searchQuery,entryNames.toArray(new String[entryNames.size()]));
 
-        //All entries that match go to new ArrayList
-        ArrayList<Map<String,Object>> results = new ArrayList<>();
+        //All entries that match go  ArrayList 'results'
         for(int i=0; i<entries.size(); i++)
         {
             for(int k=0; k<searchResults.length; k++)
