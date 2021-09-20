@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Vault {
 
     private final String vaultName;
-    private final Serializer IOHandler;
+    private  Serializer IOHandler;
     private  ArrayList<Element> vaultElements = new ArrayList<Element>();
 
     public Vault(String vaultName, String encryptionKey) throws IncorrectSecretKeyException , InvalidArgumentException
@@ -54,27 +54,19 @@ public class Vault {
         }
     }
 
-    //Debit card add
-    public void addElement(String entryName, long number, short expireMonth, short expireYear, short ccv2 , String ownersName) throws NotUniqueEntryNameException, InvalidArgumentException
+    public String getVaultElements()
     {
-        Element debitCard = new DebitCard(entryName,number,expireMonth,expireYear,ccv2,ownersName);
-        this.insertionHandler(debitCard);
+        //Converts Elements array to Json and returns it
+        String Json = "[";
+
+        for(int i = 0;i<vaultElements.size(); i++)
+        {
+            Json += this.vaultElements.get(i).toJson() + ",";
+        }
+        return Json.substring(0,Json.length() - 1) + "]";
     }
 
-    //Web credentials add
-    public void addElement(String entryName, String username, String email, String password, String url) throws NotUniqueEntryNameException, InvalidArgumentException
-    {
-        Element webCredentials = new WebCredentials(entryName, username, email, password, url);
-        this.insertionHandler(webCredentials);
-    }
-
-    //Blockchain keys add
-    public void addElement(String entryName, String publicKey, String privateKey) throws NotUniqueEntryNameException, InvalidArgumentException
-    {
-        Element blockchainKeys = new BlockchainKeys(entryName,publicKey,privateKey);
-        this.insertionHandler(blockchainKeys);
-    }
-
+    /** Element add methods - Overload addElement for additional element Types */
     private void insertionHandler(Element entry) throws NotUniqueEntryNameException, InvalidArgumentException
     {
         boolean nameValidity = this.checkNameUniqueness(entry.getName());
@@ -95,52 +87,25 @@ public class Vault {
         }
     }
 
-    private boolean checkNameUniqueness(String entryName)
+    //Debit card add
+    public void addElement(String entryName, long number, short expireMonth, short expireYear, short ccv2 , String ownersName) throws NotUniqueEntryNameException, InvalidArgumentException
     {
-        for(int i=0; i<this.vaultElements.size(); i++)
-        {   String s = this.vaultElements.get(i).getName();
-            if(s.equals(entryName))
-            {
-                return false;
-            }
-        }
-        return true;
+        Element debitCard = new DebitCard(entryName,number,expireMonth,expireYear,ccv2,ownersName);
+        this.insertionHandler(debitCard);
     }
 
-    private Element getSpecificElement(String name)
+    //Web credentials add
+    public void addElement(String entryName, String username, String email, String password, String url) throws NotUniqueEntryNameException, InvalidArgumentException
     {
-        for(int i = 0; i < vaultElements.size(); i++)
-        {
-            if(vaultElements.get(i).getName().equals(name))
-            {
-                return vaultElements.get(i);
-            }
-        }
-        return null;
+        Element webCredentials = new WebCredentials(entryName, username, email, password, url);
+        this.insertionHandler(webCredentials);
     }
 
-    public void removeElement(String entryUniqueName)
+    //Blockchain keys add
+    public void addElement(String entryName, String publicKey, String privateKey) throws NotUniqueEntryNameException, InvalidArgumentException
     {
-        for(int i = 0;i<vaultElements.size(); i++)
-        {
-            if(entryUniqueName.equals(this.vaultElements.get(i).getName()))
-            {
-                this.vaultElements.remove(i);
-                saveVault();
-            }
-        }
-    }
-
-    public String getVaultElements()
-    {
-        //Converts Elements array to Json and returns it
-        String Json = "[";
-
-        for(int i = 0;i<vaultElements.size(); i++)
-        {
-            Json += this.vaultElements.get(i).toJson() + ",";
-        }
-        return Json.substring(0,Json.length() - 1) + "]";
+        Element blockchainKeys = new BlockchainKeys(entryName,publicKey,privateKey);
+        this.insertionHandler(blockchainKeys);
     }
 
     /** Element edit methods - Overload editElement for additional element Types */
@@ -194,6 +159,49 @@ public class Vault {
     {
         Element tempBlockchainKeys = new BlockchainKeys(newEntryName,publicKey,privateKey);
         this.editElementHandler(entryName,tempBlockchainKeys);
+    }
+
+    /** Utility methods */
+    private boolean checkNameUniqueness(String entryName)
+    {
+        for(int i=0; i<this.vaultElements.size(); i++)
+        {   String s = this.vaultElements.get(i).getName();
+            if(s.equals(entryName))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private Element getSpecificElement(String name)
+    {
+        for(int i = 0; i < vaultElements.size(); i++)
+        {
+            if(vaultElements.get(i).getName().equals(name))
+            {
+                return vaultElements.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void removeElement(String entryUniqueName)
+    {
+        for(int i = 0;i<vaultElements.size(); i++)
+        {
+            if(entryUniqueName.equals(this.vaultElements.get(i).getName()))
+            {
+                this.vaultElements.remove(i);
+                saveVault();
+            }
+        }
+    }
+
+    public void changeVaultPassword(String newPassword) throws InvalidArgumentException
+    {
+        IOHandler = new Serializer(vaultName,newPassword);
+        saveVault();
     }
 }
 
