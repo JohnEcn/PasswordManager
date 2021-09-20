@@ -48,7 +48,9 @@ public class NewEntryController {
         setMouseClickTypeButton();
 
         URL fxmlURL = NewEntryController.class.getResource("EntryTypes/webNewEntry.fxml");
-        Parent node = FXMLLoader.load(fxmlURL);
+        FXMLLoader loader = new FXMLLoader(fxmlURL);
+        Parent node = loader.load();
+        currentEntryController = loader.getController();
         valuesAp.getChildren().clear();
         valuesAp.getChildren().add(node);
         webBorderRegion.setStyle("-fx-border-color: #FF7E06;");
