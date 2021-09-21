@@ -4,6 +4,7 @@ import Model.CustomExceptions.IncorrectSecretKeyException;
 import Model.CustomExceptions.InvalidArgumentException;
 import View.MainScene.MainSceneController;
 import ViewModel.ViewModel;
+import ViewModel.ViewModelUtilities;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,8 +26,8 @@ import java.util.ArrayList;
 
 public class AuthSceneController implements Initializable {
 
-    @FXML
     private final ViewModel vm = ViewModel.getInstance();
+    private final ViewModelUtilities vmUtil = ViewModelUtilities.getInstance();
     @FXML private HBox usersHbox;
     @FXML private AnchorPane rootAp;
 
@@ -66,7 +67,7 @@ public class AuthSceneController implements Initializable {
             return;
         }
 
-        ArrayList<String> vaultNames = this.vm.getExistingVaultNames();
+        ArrayList<String> vaultNames = this.vmUtil.getExistingVaultNames();
         usersHbox.getChildren().clear();
 
         if(vaultNames.size() == 1)
