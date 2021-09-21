@@ -162,21 +162,36 @@ class VaultTest {
     }
 
     @Test
-    @DisplayName("temp")
-    public void tempTest()
+    @DisplayName("change password test")
+    public void changePasswordTest()
     {
+        Element debitCard1= new DebitCard("DebitCard_1",5168213499062633L,(short) 12,(short)25,(short)233,"PETER JACKSON");
+        Element webCredentials= new WebCredentials("Uni Services","it001002","me@uni.gr","testPassword123","random.uni.gr/whatever");
+        Element blockchainKeys = new BlockchainKeys("Eth 1","0x17B86a7Ce9829B97AAB346fdbFC27dA0976d476e","88771d875fc0494bd736ab46b962e986d010381ccb4a629901bfc05578dbb2e3");
+        String expectedJson = "[" +  debitCard1.toJson() + "," +  webCredentials.toJson() + "," + blockchainKeys.toJson() + "]";
+
         try
         {
-            Vault v = new Vault("John","123");
-            v.addElement("Eth","0x79F2ac9478617F1fe767b6e5e250856Bdb63112D","c11804fb0a5d42994c5964ccb30404ddd4e3fce17f6ca6be984c79dcfe2694b4");
+            //Create a vault and add elements
+            Vault v = new Vault("test_vault1","123");
+            v.addElement("DebitCard_1",5168213499062633L,(short) 12,(short)25,(short)233,"PETER JACKSON");
+            v.addElement("Uni Services","it001002","me@uni.gr","testPassword123","random.uni.gr/whatever");
+            v.addElement("Eth 1","0x17B86a7Ce9829B97AAB346fdbFC27dA0976d476e","88771d875fc0494bd736ab46b962e986d010381ccb4a629901bfc05578dbb2e3");
+
+            //Change Password and reload the vault
+            v.changeVaultPassword("changedPassword");
+            Vault v1 = new Vault("test_vault1","changedPassword");
+            String resultJson = v1.getVaultElements();
+
+            Assertions.assertEquals(expectedJson,resultJson);
         }
         catch (Exception e)
         {
-
         }
-
-
+        finally
+        {
+            File testVaultFile = new File("test_vault1.vlt");
+            testVaultFile.delete();
+        }
     }
-
-
 }
