@@ -56,3 +56,13 @@
     -fx-font-size:14px;
     -fx-alignment:center;
 }
+#accountSettingsButton
+{
+    -fx-text-fill:#989898;
+    -fx-font-size:12px;
+    -fx-alignment:baseline-right;
+    -fx-cursor:"hand";
+    -fx-underline: true;
+    -fx-background-color: rgba(255, 255, 255, 0);
+
+}

@@ -4,6 +4,7 @@ import Model.CustomExceptions.InvalidArgumentException;
 import Model.CustomExceptions.NotUniqueEntryNameException;
 import View.MainScene.DisplayEntries.EntriesPanelHandler;
 import View.MainScene.EditEntry.EditEntryController;
+import View.MainScene.UserSettings.UserSettings;
 import View.Utilities.Utilities;
 import ViewModel.ViewModel;
 import javafx.animation.FadeTransition;
@@ -50,6 +51,7 @@ public class MainSceneController {
 
     private final ViewModel vm = ViewModel.getInstance();
     private final BoxBlur boxBlur = new BoxBlur();
+    private final FadeTransition fadeIn = new FadeTransition(Duration.millis(4500));
 
     @FXML private AnchorPane rootContainer;
     @FXML private VBox entriesPanel;
@@ -82,10 +84,27 @@ public class MainSceneController {
 
     public static void loadMainScene(Scene scene) throws IOException
     {
+        if(controller_instance != null)
+        {
+            controller_instance.displayEntries();
+            return;
+        }
         /** Loads this controller's Scene */
         URL fxmlURL = MainSceneController.class.getResource("mainScene.fxml");
         Parent root = FXMLLoader.load(fxmlURL);
         scene.setRoot(root);
+    }
+
+    public void loadSettingsUI()
+    {
+        try
+        {
+            UserSettings.loadSettingsUI(entriesPanel);
+        }
+        catch (IOException e)
+        {
+            displayFeedbackMessage("Unexpected error occurred.", "red");
+        }
     }
 
     public void onTopController(ActionEvent a)
@@ -136,12 +155,10 @@ public class MainSceneController {
     {
         messageLabel.setText(message);
         messageLabel.setStyle("-fx-text-fill: "+color+";");
-        FadeTransition fadeIn = new FadeTransition(Duration.millis(300));
         fadeIn.setNode(messageLabel);
         fadeIn.setFromValue(1);
         fadeIn.setToValue(0);
         fadeIn.setCycleCount(1);
-        fadeIn.setDelay(Duration.millis(2300));
         fadeIn.setAutoReverse(false);
         fadeIn.playFromStart();
     }

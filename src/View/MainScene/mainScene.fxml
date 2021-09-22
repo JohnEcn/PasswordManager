@@ -30,5 +30,6 @@
       <CheckBox id="sensDataCheckbox" fx:id="sensDataCheckbox" layoutX="14.0" layoutY="108.0" mnemonicParsing="false" onAction="#hideSensitiveDataController" prefHeight="19.0" prefWidth="145.0" selected="true" text="Hide sensitive data" />
       <Label id="messageLabel" fx:id="messageLabel" layoutX="358.0" layoutY="111.0" prefHeight="18.0" prefWidth="171.0" />
       <Button id="newEntryBut" fx:id="newEntryBut" layoutX="725.0" layoutY="85.0" mnemonicParsing="false" onAction="#newEntry" prefHeight="40.0" prefWidth="128.0" text="New Entry" />
+      <Button id="accountSettingsButton" fx:id="accountSettingsButton" layoutX="731.0" layoutY="5.0" minHeight="18.0" mnemonicParsing="false" onAction="#loadSettingsUI" prefHeight="30.0" prefWidth="127.0" text="Account settings" />
    </children>
 </AnchorPane>
