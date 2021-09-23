@@ -196,6 +196,7 @@ public class MainSceneController {
     {
         ArrayList<Map<String,Object>> vaultContents = vm.getVaultContents();
         EntriesPanelHandler.getInstance(entriesPanel,boxBlur).displayEntries(vaultContents,searchField.getText());
+        rootContainer.lookup("#sensDataCheckbox").setDisable(false);
     }
 
     public void deleteEntry(String entryUniqueName)
