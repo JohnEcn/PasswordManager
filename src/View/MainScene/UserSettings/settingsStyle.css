@@ -1,0 +1,68 @@
+#settingsContainer
+{
+    -fx-background-color: #2A2F33;
+    -fx-border-radius:7px;
+    -fx-background-radius:7px;
+}
+#settingsTitle
+{
+    -fx-text-fill:white;
+    -fx-font-size:18px;
+    -fx-alignment:center;
+    -fx-font-weight:bold;
+}
+#settingsButton
+{
+    -fx-background-color: #2A2F33;
+    -fx-border-radius:4px;
+    -fx-background-radius:4px;
+    -fx-border-color:#636363;
+    -fx-cursor:"hand";
+    -fx-text-fill:white;
+    -fx-font-size:13px;
+    -fx-alignment:center;
+    -fx-font-weight:bold;
+
+}
+#settingsSeparator
+{
+    -fx-fill:#636363;
+}
+#changePasswordLabels
+{
+    -fx-text-fill:white;
+    -fx-font-size:11px;
+    -fx-font-weight:bold;
+}
+#passwordChangeTextFields
+{
+    -fx-background-radius:0px;
+}
+#confirmPasswordChangeButton
+{
+    -fx-background-color: #FE932B;
+    -fx-cursor: HAND;
+    -fx-background-radius:0px;
+    -fx-font-weight:bold;
+}
+#alertMessageBorder
+{
+    -fx-background-color: #2A2F33;
+    -fx-border-radius:14px;
+    -fx-background-radius:14px;
+    -fx-border-width:1px;
+    -fx-border-color:#FF0404;
+}
+#alertMessageLabel
+{
+    -fx-text-fill:white;
+    -fx-font-size:11px;
+    -fx-font-weight:bold;
+}
+#errorMessageLabel
+{
+    -fx-text-fill:red;
+    -fx-font-size:11px;
+    -fx-font-weight:bold;
+    -fx-alignment:center;
+}
