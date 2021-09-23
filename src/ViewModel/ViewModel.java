@@ -16,7 +16,7 @@ public class ViewModel {
     private static ViewModel single_instance = null;
     private ViewModel()
     {
-        ViewModelUtilities.getInstance(this.vault);
+        ViewModelUtilities.getInstance();
     }
     public static ViewModel getInstance()
     {
@@ -40,6 +40,7 @@ public class ViewModel {
                 this.vault = new Vault(vaultName, vaultKey);
                 this.isVaultOpen = true;
                 this.vaultName = vaultName;
+                ViewModelUtilities.getInstance().setVault(this.vault);
             } catch (IncorrectSecretKeyException | InvalidArgumentException e) {
                 e.printStackTrace();
                 this.vault = null;

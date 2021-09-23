@@ -14,26 +14,23 @@ public class ViewModelUtilities {
      *  by the ViewModel
      */
     private static ViewModelUtilities single_instance = null;
-    public static ViewModelUtilities getInstance(Vault v)
-    {
+    public static ViewModelUtilities getInstance(){
         if (single_instance == null)
         {
-            single_instance = new ViewModelUtilities(v);
+            single_instance = new ViewModelUtilities();
         }
         return single_instance;
     }
-    public static ViewModelUtilities getInstance()
-    {
-        return single_instance;
-    }
-    private ViewModelUtilities(Vault v)
-    {
-        this.vault = v;
+    private ViewModelUtilities(){
     }
     /** ---------------------------------------------------- */
 
     private Vault vault;
 
+    public void setVault(Vault v)
+    {
+        this.vault = v;
+    }
     public ArrayList<String> getExistingVaultNames()
     {
         File folder = new File("./");
@@ -61,7 +58,7 @@ public class ViewModelUtilities {
         try
         {
             //Attempt to authenticate user before changing password
-            vm.unlockVault(vm.getLoadedVaultName(),oldPassword);
+            new Vault(vm.getLoadedVaultName(),oldPassword);
             vault.changeVaultPassword(newPassword);
         }
         catch (IncorrectSecretKeyException | InvalidArgumentException e)
