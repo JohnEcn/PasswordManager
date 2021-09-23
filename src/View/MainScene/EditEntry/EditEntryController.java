@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
@@ -55,6 +57,11 @@ public class EditEntryController {
 
     public void deleteEntry()
     {
+        //Disable always on top before displaying the delete dialog
+        Stage stage = (Stage) nameValue.getScene().getWindow();
+        boolean onTopPropertyStatus = stage.alwaysOnTopProperty().get();
+        stage.setAlwaysOnTop(false);
+
         /** Confirmation window */
         Alert a = new Alert(Alert.AlertType.CONFIRMATION);
         a.setTitle("Delete confirmation");
@@ -75,6 +82,9 @@ public class EditEntryController {
                 e.printStackTrace();
             }
         }
+
+        //Restore the onTopProperty
+        stage.setAlwaysOnTop(onTopPropertyStatus);
     }
 
     public void loadEntryDataFields() throws IOException
