@@ -52,7 +52,22 @@ public class EntriesPanelHandler
     {
         vaultContents = filterEntries(vaultContents,searchQuery);
         ArrayList<AnchorPane> rows = new ArrayList<AnchorPane>();
-        if(vaultContents == null || vaultContents.size()==0){return;}
+        if(vaultContents == null || vaultContents.size()==0)
+        {
+            //Displaying empty vault message
+            entriesContainer.getChildren().clear();
+            Label label = new Label();
+            AnchorPane anchorPane = new AnchorPane();
+            anchorPane.setPrefSize(884,343);
+            label.setText("No entries added yet...");
+            label.setId("emptyVaultLabel");
+            label.setPrefWidth(345);
+            label.setLayoutX(270.0);
+            label.setLayoutY(163.0);
+            anchorPane.getChildren().add(label);
+            entriesContainer.getChildren().add(anchorPane);
+            return;
+        }
 
         /** Creates anchorPane elements with the entry data.
          *  To add a new type of entry, add a new else if
