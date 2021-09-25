@@ -99,7 +99,7 @@ public class DebitCard extends Element{
     @Override
     public String toJson()
     {
-        return "{ " +
+        String json = "{ " +
                 "\"type\": \"DebitCard\"" +
                 ", \"name\": " + "\"" + this.getName() + "\"" +
                 ", \"number\": " +"\"" +  this.number+ "\""  +
@@ -108,5 +108,7 @@ public class DebitCard extends Element{
                 ", \"ccv2\":" + "\"" +   this.ccv2 + "\""  +
                 ", \"ownersName\":"+ "\""+  this.ownersName + "\"" +
                 " }";
+
+        return validateJson(json);
     }
 }

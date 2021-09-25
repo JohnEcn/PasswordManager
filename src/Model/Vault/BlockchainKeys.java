@@ -35,11 +35,13 @@ public class BlockchainKeys extends Element{
     @Override
     public String toJson()
     {
-        return "{ " +
+        String json =  "{ " +
                 "\"type\": \"blockchainKeys\"" +
                 ",\"name\": " + "\"" + this.getName() + "\"" +
                 ",\"publicKey\": " + "\"" + this.publicKey + "\"" +
                 ",\"privateKey\": " + "\"" + this.privateKey + "\"" +
                 " }";
+
+        return validateJson(json);
     }
 }

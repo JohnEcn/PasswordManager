@@ -61,6 +61,11 @@ public class Vault {
 
         for(int i = 0;i<vaultElements.size(); i++)
         {
+            String elementJson = this.vaultElements.get(i).toJson();
+            if(elementJson.equals(""))
+            {
+                continue;
+            }
             Json += this.vaultElements.get(i).toJson() + ",";
         }
         return Json.substring(0,Json.length() - 1) + "]";

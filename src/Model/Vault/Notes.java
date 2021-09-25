@@ -41,11 +41,13 @@ public class Notes extends Element{
     @Override
     public String toJson()
     {
-        return "{ " +
+        String json =  "{ " +
                 "\"type\": \"note\"" +
                 ",\"name\": " + "\"" + this.getName() + "\"" +
                 ",\"note\": " + "\"" + this.note + "\"" +
                 ",\"creationDate\": " + "\"" + this.creationDate + "\"" +
                 " }";
+
+        return validateJson(json);
     }
 }

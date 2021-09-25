@@ -67,7 +67,7 @@ public class WebCredentials extends  Element{
     @Override
     public String toJson()
     {
-        return "{ " +
+        String json = "{ " +
                 "\"type\": \"webCredentials\"" +
                 ",\"name\": " + "\"" + this.getName() + "\"" +
                 ",\"username\": " + "\"" + this.username + "\"" +
@@ -75,5 +75,7 @@ public class WebCredentials extends  Element{
                 ",\"password\": " + "\"" + this.password + "\"" +
                 ",\"url\": " + "\"" + this.url + "\"" +
                 " }";
+
+        return validateJson(json);
     }
 }
