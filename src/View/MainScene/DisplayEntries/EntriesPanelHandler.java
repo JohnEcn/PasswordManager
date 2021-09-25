@@ -56,6 +56,7 @@ public class EntriesPanelHandler
         {
             //Displaying empty vault message
             entriesContainer.getChildren().clear();
+            if(!searchQuery.equals("")){return;}
             Label label = new Label();
             AnchorPane anchorPane = new AnchorPane();
             anchorPane.setPrefSize(884,343);
