@@ -58,7 +58,7 @@ public class UserSettings
     public void loadSettingUI(Button btn) throws IOException
     {
         Button[] settingsButtons = {changePasswordBut,changeNameBut,exportCsvBut,deleteVaultBut};
-        URL fxmlURL = UserSettings.class.getResource("settingType/"+ this.currentSetting +".fxml");
+        URL fxmlURL = UserSettings.class.getResource("SettingType/"+ this.currentSetting +".fxml");
         Parent root = FXMLLoader.load(fxmlURL);
         rightSettingsContainer.getChildren().clear();
         rightSettingsContainer.getChildren().add(root);
