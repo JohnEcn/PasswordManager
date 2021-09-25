@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane id="entryRow" prefHeight="40.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Rectangle id="nameSeparator" arcHeight="5.0" arcWidth="5.0" height="40.0" layoutX="175.0" layoutY="1.0" strokeType="INSIDE" strokeWidth="2.0" width="2.0" />
+        <ImageView fitHeight="36.0" fitWidth="42.0" layoutX="14.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/notes.png" />
+            </image>
+        </ImageView>
+        <Label id="entryNameLabel" layoutX="68.0" prefHeight="41.0" prefWidth="106.0" text="" />
+        <Label id="editDateLabel" layoutX="192.0" layoutY="4.0" prefHeight="18.0" prefWidth="117.0" snapToPixel="false" text="Last Edit Date" AnchorPane.topAnchor="2.0">
+        </Label>
+        <Label id="editDateValue" fx:id="editDateValue" layoutX="192.0" layoutY="24.0" prefHeight="20.0" prefWidth="300.0" text="" AnchorPane.bottomAnchor="1.0">
+        </Label>
+    </children>
+</AnchorPane>

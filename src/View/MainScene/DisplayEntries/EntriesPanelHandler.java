@@ -91,6 +91,11 @@ public class EntriesPanelHandler
                 AnchorPane newRow = getBlockChainKeysRow(vaultContents.get(i));
                 rows.add(newRow);
             }
+            else if(entryType.equals("note"))
+            {
+                AnchorPane newRow = getNoteRow(vaultContents.get(i));
+                rows.add(newRow);
+            }
         }
         /** ------------------------------------------------------- */
 
@@ -218,6 +223,22 @@ public class EntriesPanelHandler
         privateKey.setText((String)data.get("privateKey"));
         privateKey.setEffect(boxBlur);
         addMouseClickListener(privateKey);
+
+        return newRow;
+    }
+
+    private AnchorPane getNoteRow(Map<String,Object> data) throws IOException
+    {
+        URL fxmlURL = MainSceneController.class.getResource("EntryRow/noteRow.fxml");
+        AnchorPane newRow = FXMLLoader.load(fxmlURL);
+
+        Label entryNameLabel = (Label) newRow.lookup("#entryNameLabel");
+        entryNameLabel.setText((String)data.get("name"));
+        editEntryClickListener(entryNameLabel,data);
+        entryNameLabel.setTooltip(new Tooltip("Edit"));
+
+        Label publicKey = (Label) newRow.lookup("#editDateValue");
+        publicKey.setText((String)data.get("creationDate"));
 
         return newRow;
     }

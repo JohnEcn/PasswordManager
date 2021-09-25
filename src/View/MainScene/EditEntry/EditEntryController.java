@@ -94,8 +94,8 @@ public class EditEntryController {
         Parent node = null;
 
         //Load the correct fxml of the entry type that is edited
-        String[] entryTypeName = {"webCredentials","DebitCard","blockchainKeys"};
-        String[] entryTypeFXML = {"webNewEntry","ccNewEntry","blockchainKeyNewEntry"};
+        String[] entryTypeName = {"webCredentials","DebitCard","blockchainKeys","note"};
+        String[] entryTypeFXML = {"webNewEntry","ccNewEntry","blockchainKeyNewEntry","noteNewEntry"};
         for(int i = 0; i< entryTypeName.length; i++)
         {
             if(entryType.equals(entryTypeName[i]))

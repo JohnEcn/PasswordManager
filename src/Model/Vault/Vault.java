@@ -108,6 +108,13 @@ public class Vault {
         this.insertionHandler(blockchainKeys);
     }
 
+    //Note add
+    public void addElement(String entryName, String note) throws NotUniqueEntryNameException, InvalidArgumentException
+    {
+        Element newNote = new Notes(entryName,note);
+        this.insertionHandler(newNote);
+    }
+
     /** Element edit methods - Overload editElement for additional element Types */
     public void editElementHandler(String editedElementName, Element element) throws NotUniqueEntryNameException, InvalidArgumentException
     {
@@ -154,11 +161,18 @@ public class Vault {
         this.editElementHandler(entryName,tempElement);
     }
 
-    //Blockchain keys add
+    //Blockchain keys edit
     public void editElement(String newEntryName,String entryName, String publicKey, String privateKey) throws NotUniqueEntryNameException, InvalidArgumentException
     {
         Element tempBlockchainKeys = new BlockchainKeys(newEntryName,publicKey,privateKey);
         this.editElementHandler(entryName,tempBlockchainKeys);
+    }
+
+    //Note edit
+    public void editElement(String newEntryName,String entryName, String note) throws NotUniqueEntryNameException, InvalidArgumentException
+    {
+        Element newNote = new Notes(newEntryName,note);
+        this.editElementHandler(entryName,newNote);
     }
 
     /** Utility methods */

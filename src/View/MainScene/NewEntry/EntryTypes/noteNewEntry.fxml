@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="294.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScene.NewEntry.EntryTypes.NoteNewEntryController">
+    <children>
+        <Label id="typeTitle" fx:id="typeTitle" layoutX="129.0" layoutY="14.0" prefHeight="17.0" prefWidth="220.0" text="Note" />
+        <Rectangle id="whiteLine" arcHeight="5.0" arcWidth="5.0" height="1.0" layoutX="31.0" layoutY="42.0" width="403.0" />
+        <TextArea id="notesValue" fx:id="notesValue" layoutX="35.0" layoutY="55.0" prefHeight="219.0" prefWidth="403.0" />
+    </children>
+</AnchorPane>

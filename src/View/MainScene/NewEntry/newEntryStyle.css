@@ -11,7 +11,7 @@
 {
     -fx-fill: red;
 }
-#webBorderRegion,#ccBorderRegion,#blockChainKeyBorderRegion {
+#webBorderRegion,#ccBorderRegion,#blockChainKeyBorderRegion,#noteBorderRegion{
     -fx-background-color: #2A2F33;
     -fx-border-radius:16px;
     -fx-background-radius:16px;
@@ -23,7 +23,7 @@
     -fx-font-size:10px;
     -fx-alignment:center;
 }
-#webCredType,#ccType,#blockchainKeyType {
+#webCredType,#ccType,#blockchainKeyType,#noteType {
     -fx-cursor:"hand";
 }
 #saveBut,#cancelBut,#deleteBut {

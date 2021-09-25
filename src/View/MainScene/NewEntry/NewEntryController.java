@@ -38,6 +38,8 @@ public class NewEntryController {
     @FXML private Region blockChainKeyBorderRegion;
     @FXML private ImageView blockchainKeyType;
     @FXML private Region webBorderRegion;
+    @FXML private ImageView noteType;
+    @FXML private Region noteBorderRegion;
     @FXML private Label errorMessageLabel;
 
     private String currentTypeSelected = "webCredType";
@@ -73,7 +75,7 @@ public class NewEntryController {
     {
         //This array holds the 'buttons' that when clicked a entry type is selected
         //To add a new button simply add an imageView in the array
-        ImageView[] entryTypesButtons = {ccType , webCredType ,blockchainKeyType};
+        ImageView[] entryTypesButtons = {ccType , webCredType ,blockchainKeyType,noteType};
 
         for(int i = 0; i<entryTypesButtons.length; i++)
         {
@@ -101,9 +103,9 @@ public class NewEntryController {
         // (1) Add the entry type name
         // (2) add the fxml file that corresponds to the new entry and
         // (3) Add the button region of the new button
-        String[] entryTypeName = {"ccType","webCredType","blockchainKeyType"};
-        String[] entryTypeFXML = {"ccNewEntry","webNewEntry","blockchainKeyNewEntry"};
-        Region[] buttonRegion =  {ccBorderRegion,webBorderRegion,blockChainKeyBorderRegion};
+        String[] entryTypeName = {"ccType","webCredType","blockchainKeyType","noteType"};
+        String[] entryTypeFXML = {"ccNewEntry","webNewEntry","blockchainKeyNewEntry","noteNewEntry"};
+        Region[] buttonRegion =  {ccBorderRegion,webBorderRegion,blockChainKeyBorderRegion,noteBorderRegion};
 
         for(int i =0; i<buttonRegion.length; i++)
         {
