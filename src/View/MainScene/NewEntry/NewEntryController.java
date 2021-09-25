@@ -1,10 +1,8 @@
 package View.MainScene.NewEntry;
 
 import View.MainScene.MainSceneController;
-import View.MainScene.NewEntry.EntryTypes.BlockchainKeyNewEntryController;
 import View.MainScene.NewEntry.EntryTypes.EntryType;
-import View.MainScene.NewEntry.EntryTypes.WebNewEntryController;
-import View.MainScene.NewEntry.EntryTypes.ccNewEntryController;
+import View.Utilities.Utilities;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -144,6 +142,12 @@ public class NewEntryController {
             if(nameValue.getText().equals(""))
             {
                 throw new Exception("Name cannot be empty");
+            }
+
+            //Escape illegal characters from data collected
+            for (Map.Entry<String, String> entry : data.entrySet())
+            {
+                data.replace(entry.getKey(),Utilities.escapeIllegalCharacters(entry.getValue()));
             }
 
             //Call the MainSceneController method to pass the data to ViewModel

@@ -3,6 +3,7 @@ package View.MainScene.EditEntry;
 import View.MainScene.MainSceneController;
 import View.MainScene.NewEntry.EntryTypes.EntryType;
 import View.MainScene.NewEntry.NewEntryController;
+import View.Utilities.Utilities;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -48,6 +49,12 @@ public class EditEntryController {
     {
         nameValue.setText((String) data.get("name"));
         loadEntryDataFields();
+
+        //Escape illegal characters from the data
+        for (Map.Entry<String, Object> entry : data.entrySet())
+        {
+            data.replace(entry.getKey(), Utilities.escapeIllegalCharacters((String) entry.getValue()));
+        }
     }
 
     public void backToMainScene() throws IOException
@@ -136,6 +143,12 @@ public class EditEntryController {
 
             if(nameValue.getText().equals("")){
                 throw new Exception("Name cannot be empty");
+            }
+
+            //Escape illegal characters from data collected
+            for (Map.Entry<String, String> entry : newData.entrySet())
+            {
+                newData.replace(entry.getKey(), Utilities.escapeIllegalCharacters(entry.getValue()));
             }
 
             //Call the MainSceneController method to pass the data to ViewModel

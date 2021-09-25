@@ -28,4 +28,19 @@ public class Utilities {
             return results.toArray(new String[results.size()]);
         }
     }
+
+    public static String escapeIllegalCharacters(String s)
+    {   //Escape double quotes and backslash
+
+        StringBuffer str = new StringBuffer(s);
+        for (int i = 0; i < str.length(); i++)
+        {
+            if(str.charAt(i) == '\"' || str.charAt(i) == '\\')
+            {
+                str.insert(i,"\\");
+                i++;
+            }
+        }
+        return str.toString();
+    }
 }
