@@ -82,3 +82,7 @@
     -fx-font-size:18px;
     -fx-alignment:center;
 }
+#notesValue
+{
+    -fx-background-radius:0px;
+}

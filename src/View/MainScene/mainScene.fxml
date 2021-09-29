@@ -14,7 +14,7 @@
       <Label id="mainLabel" layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="255.0" text="John’s Vault" />
       <ScrollPane fx:id="scrollPanel" hbarPolicy="NEVER" layoutY="145.0" prefHeight="346.0" prefWidth="886.0" style="-fx-border-width: 0;" vbarPolicy="NEVER">
          <content>
-            <VBox id="entriesPanel" fx:id="entriesPanel" prefHeight="344.0" prefWidth="884.0" spacing="6.0">
+            <VBox id="entriesPanel" fx:id="entriesPanel" prefHeight="344.0" prefWidth="884.0" spacing="2.5">
                <children>
                   <AnchorPane prefHeight="343.0" prefWidth="884.0">
                      <children>

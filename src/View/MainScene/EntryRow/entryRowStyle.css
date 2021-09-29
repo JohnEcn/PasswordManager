@@ -1,7 +1,7 @@
 #entryRow {
-    -fx-background-color: #484D51;
+    -fx-background-color: #303538;
     -fx-box-sizing: border-box;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0.5, 0.0, 0.0);
+
 }
 #nameSeparator {
     -fx-stroke: #5B5B5B;
@@ -24,3 +24,4 @@
     -fx-text-fill:white;
     -fx-font-size:14px;
 }
+#
