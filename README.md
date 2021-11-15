@@ -1,5 +1,5 @@
 # **PassLocker** - Simple password manager
-PassLocker is a desktop application built with Java and JavaFX.
+PassLocker is a desktop application built with Java and JavaFX.\
 Downloads : [Jar][JarDl] - [Exe][exeDl]
 
 ## Features
