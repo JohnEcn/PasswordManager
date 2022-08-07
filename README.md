@@ -25,7 +25,7 @@ Downloads : [Jar][JarDl] - [Exe][exeDl]
 ![](https://media.giphy.com/media/D2tXy3PeSLd4jEHtr4/giphy.gif)
 
 ## Project structure overview
-![](https://i.postimg.cc/Yq6HTHZv/Untitled-Diagram-drawio-1.png)
+![](https://i.postimg.cc/wvD1rPpg/Struct.png)
 
 #### Model
 - Each user entry is an **Element** type object, that exists in a **Vault** class instance.
